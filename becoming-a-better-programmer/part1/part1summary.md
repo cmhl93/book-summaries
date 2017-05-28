@@ -330,7 +330,7 @@ A comment should explain why-but only if it's not already clear.
     
 ### Bad Code? Bad Programmers?
 
-> **Key:**  There is no need to aportion blame for "bad" code.
+> **Key:**  There is no need to apportion blame for "bad" code.
 
 ## Don't Ignore That Error!
 
