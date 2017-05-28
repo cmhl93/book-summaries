@@ -1,4 +1,4 @@
-# Part1: You.write(code);
+# Part 1: You.write(code);
 
 ## Document contents
 [Keeping Up Appearance](#keeping-up-appearance)
