@@ -85,6 +85,7 @@
   * Ensure that your names are accurate
   
 ### Make yourself presentable
+
 > **Key:** Never alter presentation and behaviour at the same time.  Make them separate separate version-controlled changes
 
 ## Write Less Code!
@@ -184,11 +185,31 @@ A comment should explain why-but only if it's not already clear.
   * Your design should consider whether off-the-shelf libraries already exist that solve your programming problems.
   
 ### So What Do We Do?
+
 > **Key:** Every day, leave your code a little better than it was. Remove redundancy and duplication as you find it.
 
 ## Improve Code by Removing It
 
+> **Key:** You can improve a system by adding new code.  You can also improve a system by removing code.
+
+### So What?
+
+> **Key:** Remove dead code wherever possible.  It gets in the way and slows you down.
+
+### Waking the Dead
+
+  * How can you find dead code?
+    * The best approach is to pay attention whilst working in the codebase.  
+    * Be responsible for your actions, and ensure that you always clean up after your work. 
+    
+### Surgical Extracting
+
+> **Key:** It is safe to remove code that you might need in the future.  You can always get it back from version control.
+
+> **Key:** Code cleanup should always be made in separate commits to functional changes
+
 ## The Ghost of a Codebase PAst
+
 
 ## Navigating a Route
 
