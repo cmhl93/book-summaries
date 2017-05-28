@@ -208,12 +208,98 @@ A comment should explain why-but only if it's not already clear.
 
 > **Key:** Code cleanup should always be made in separate commits to functional changes
 
-## The Ghost of a Codebase PAst
+## The Ghost of a Codebase Past
 
+> **Key:** Looking back at your older code will inform you about the improvement (or otherwise) in your coding skills.
 
+###  Presentation
+
+  * A style should be employed consistently in your codebase.
+  
+### The State of the Art
+
+  * The introduction of a language-supported threading model renders third-party thread libraries (often implemented with rather questionable APIs) redundant.
+  * The introduction of lambdas removes the need for a lot of verbose handwritten "trampoline" code. 
+  * The range-based for helps remove a lot of syntactical trees so you can see the code-design wood.
+
+### Idioms
+
+  * Each language, with its unique set of language constructs and library facilities, has a particular "best practice" method of use.  
+  * These are the idioms that experienced users adopt, the modes of use that have become honed and preferred over time.
+  * As languages gain new features (e.g., lambdas) the kind of idiomatic code you'd write today may look very different from previous generations of the code.
+  
+### Design Decisions
+
+  * You make a few mistakes, read some different code, work with talented coders, and pretty soon find you improved design skills.
+  
+### Bugs
+
+  * Sometimes coming back with fresh eyes uncover obvious problems that you missed at the time.
+  * After you've been bitten by certain kinds of bugs (often those that the common idioms steer you away from) you naturally begin to see potential bugs in old code
+  
 ## Navigating a Route
 
+### A Little Help from My Friends
+
+> **Key:** Your best route into code is to be led by someone who already knows the terrain.  Don't be afraid to ask for help!
+
+  * Look for online forums or mailing lists that contain helpful information and helpful people.  
+  * There is often a healthy community that grows around popular open source projects
+  
+### Look for Clues
+
+  * These are good indicators:
+    * Ease of getting the source
+    > **Key:**  Healthy projects require a single checkout to obtain the whole codebase, and the code can be placed in any directory on your build machine.  Do not rely on multiple checkout steps, or code in hardcoded locations.
+    * Ease of building the code
+      * If it's hard to build the code, it's often hard too work with it.
+    > **Key:**  A healthy build runs in one step, with no manual intervention during the build process
+    * Tests
+    * File structure
+    * Documentation
+    * Static analysis
+    * Requirements
+    * Project dependencies
+    * Code quality
+    * Architecture
+    > **Key:**  Often the real architecture of a system differs from the ideal design.  Always trust the code, not the documentation.
+    
+### Learn by Doing
+
+> **Key:**  The best way to learn code is to modify it. Then learn from your mistakes.
+
+### Low-Hanging Fruit
+
+  * Start with a small, repeatable, low-risk fault report, rather than a meaty intermittent nightmare.
+  
+### Inspect the Code
+
+  * Run the codebase through some code validators (like Lint, Fortify, Cppcheck, FxCop, ReSharper, or the like).
+  * Look to see if compiler warnings have been disabled; re-enable them, and fix the messages.
+  
+### Study, Then Act
+
+  * Study a small piece of code.  Critique it.  Determine if there are weak spots. Refactor it.
+  
+### Test First
+
+  * Look at the tests. 
+  * Work out how to add a new unit test, and how to add a new test file to the suite.  How do the tests get run?
+  * A great trick is to try adding a single, one-line, failing test.  Does the suite immediately fail? This smoke test proves that the tests are not actively being ignored.
+  
+### Housekeeping
+
+  * Tidy the source files: correct the directory hierarchy. Make it match the organisation in the IDE or projects files.
+  
+### Document What you Find
+
+  * Does the code have any kind of top-level README documentation file explaining how to start working on it?
+  * If not, create one and include the things that you have learned so far.
+  * As you gain understanding of the system, maintain a layer diagram of the main sections of code.  Keep it up-to-date as you learn.
+  
 ## Wallowing in Filth
+
+### Smell the Signs
 
 ## Don't Ignore That Error!
 
