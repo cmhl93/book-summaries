@@ -301,6 +301,37 @@ A comment should explain why-but only if it's not already clear.
 
 ### Smell the Signs
 
+> **Key:**  Be prepared to encounter bad code. Fill your toolbox with sharp tools to deal with it.
+
+### Wading into the Cesspit
+
+> **Key:**  Silence the feeling of revulsion when you encounter "bad" code. Instead, look for ways to practically improve it.
+
+### The Survey Says..
+
+  * Consider employing software archaeology in your survey: mine your revision control system logs for hints about the quality.
+
+### Working in the Sandpit
+
+> **Key:**  Pick your battles. Consider carefully whether you should invest time and effort in "tidying up" bad code. It may be pragmatic to leave it alone right now.
+
+### Cleaning Up Messes
+
+> **Key:**  Follow the Boy Scout Rule. Whenever you touch some code leave it better than you found it.
+
+### Making Adjustments
+
+> **Key:**  Make code changes slowly, and carefully. Make one change at a time.
+
+  * There are many practical ways to follow this advice. Specifically:
+    * Do not change code layout whilst adjusting functionality.
+    * Do everything you can to ensure that your :tidying" preverses existing behaviour.
+    * Adjust the APIs that wrap the code without directly modifying the internal logic.
+    
+### Bad Code? Bad Programmers?
+
+> **Key:**  There is no need to aportion blame for "bad" code.
+
 ## Don't Ignore That Error!
 
 ## Expect the Unexpected
