@@ -334,6 +334,27 @@ A comment should explain why-but only if it's not already clear.
 
 ## Don't Ignore That Error!
 
+> **Key:**  Do not ignore possible errors in your code. Don't put off handling errors until "later" (you won't get around to it).
+
+### The Mechanism
+
+  * We report errors in our code in a number of ways, including:
+    * Return codes
+    * Side effects
+    * Exceptions
+    > **Key:**  Use exceptions well, with discipline. Understand your language's idioms and requirements for effective exception use.
+    
+### The Madness
+
+  * Not handling errors leads to:
+    * Brittle code
+      * This type of code is full of hard-to-find crashes
+    * Insecure code
+      * Crackers often exploit poor error handling to break into software systems
+    * Bad structure
+      * If there are errors from your code that are tedious to deal with continually, you probably have a bad interface. 
+      * Express it better, so the errors are not so onerous.
+
 ## Expect the Unexpected
 
 ## Bug Hunting
