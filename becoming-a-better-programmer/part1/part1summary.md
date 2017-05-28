@@ -5,25 +5,25 @@
 
 [Write Less Code!](#write-less-code)
 
-[Improve Code by Removing It](#removecode)
+[Improve Code by Removing It](#improve-code-by-removing-it)
 
-[The Ghost of a Codebase Past](#ghost)
+[The Ghost of a Codebase Past](#the-ghost-of-a-codebase-past)
 
-[Navigating a Route](#navigating)
+[Navigating a Route](#navigating-a-route)
 
-[Wallowing in Filth](#wallowing)
+[Wallowing in Filth](#wallowing-in-filth)
 
-[Don't Ignore That Error!](#dontignore)
+[Don't Ignore That Error!](#dont-ignore-that-error)
 
-[Expect the Unexpected](#unexpected)
+[Expect the Unexpected](#expect-the-unexpected)
   
-[Bug Hunting](#hunting)
+[Bug Hunting](#bug-hunting)
 
-[Testing Times](#testing)
+[Testing Times](#testing-times)
 
-[Coping with Complexity](#coping)
+[Coping with Complexity](#coping-with-complexity)
 
-[A Tale of Two Systems](#twosystems)
+[A Tale of Two Systems](#a-tale-of-two-systems)
 
 ## Keeping Up Appearance
 
@@ -185,3 +185,23 @@ A comment should explain why-but only if it's not already clear.
   
 ### So What Do We Do?
 > **Key:** Every day, leave your code a little better than it was. Remove redundancy and duplication as you find it.
+
+## Improve Code by Removing It
+
+## The Ghost of a Codebase PAst
+
+## Navigating a Route
+
+## Wallowing in Filth
+
+## Don't Ignore That Error!
+
+## Expect the Unexpected
+
+## Bug Hunting
+
+## Testing Times
+
+## Coping with Complexity
+
+## A Tale of Two Systems
