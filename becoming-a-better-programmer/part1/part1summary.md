@@ -376,7 +376,79 @@ A comment should explain why-but only if it's not already clear.
 
 ## Bug Hunting
 
+### An Ounce of Prevention
 
+> **Key:**  Avoid injecting bugs into your code by employing sound engineering practices. Don't expect quickly hacked-out code to be of high quality.
+
+### Bug Hunting
+
+  * Two factors usually determine how hard a bug is to fix:
+    * How repoducible it is
+    * The time between the cause of the bug entering the code, the "software fault" itself - the bad line of code, or faulty integration assumption - and you actually noticing.
+  * The first, and most important thing, is to methodically investigate and characterise the bug.  Give yourself the best raw material to work with:
+    * Reduce it to the simplest set of reproduction steps possible.
+    * Ensure that you are focusing on a single problem
+    * Determine how repeatable the problem is.
+    
+### Lay Traps
+
+  * Find places in the code path between these two points, and set traps to catch the fault.
+  * Add assertions or tests to verify the system invariants - the facts that must hold for the state to be correct.
+  * Add diagnostic printouts to see the state of the code so you can work out what's going on.
+  > **Key:**  Assertions and logging (even the humble printf) are potent debugging tools. Use them often
+  
+### Learn to Binary Chop
+
+  * This is a very powerful approach - allowing you to get to a solution in order O(log n) time, rather than O(n).
+  > **Key:**  Binary chop problem spaces to get results faster.
+  * Employ this technique with trap laying.
+  
+### Employ Software Archaeology
+
+  * Software archaeology describes the art of mining through the historical records in your version control system.
+  * Determine a point in the near past of the codebase when this bug didn't exist.
+  * Once you find the breaking code change, the cause of the fault is usually obvious, and the fix is self-evident.
+  
+### Test, Test, Test
+
+> **Key:**  Untested code is a breeding ground for bugs. Tests are your bleach.
+
+### Invest in Sharp Tools
+
+> **Key:**  Learn how to use your debugger well. Then use it at the right times.
+
+### Remove Code to Exclude it from Cause Analysis
+
+  * Disable other threads that shouldn't be involved. 
+  * Remove subsections of code that do not look like they're related.
+  
+### Cleanliness Prevents Infection
+
+> **Key:**  Fix bugs as soon as you can. Don't let them pile up until you're suck in a code cesspit.
+
+### Oblique Strategies
+
+  * Take a break
+  * Explain it to someone else
+  
+### Don't Rush Away
+
+  * Once you find and fix a bug, don't rush mindlessly on.  
+
+### Non-Reproducible Bugs
+
+  * How do we go about finding, and fixing, these fiends?
+    * Keep records of the factors that contribute to the fault.
+    * As you get more information, start to draw conclusions.
+    * Consider adding more logging and assertions in beta or releaase builds to help gather information from the field.
+    * If it's a really pressing problem, set up a test farm to run long-running soak tests.
+  * There are a few things that are known to contribute to such unreliable bugs. 
+  * You may find they provide hints for where to start investigating:
+    * Threaded code
+    * Network interaction
+    * The variable speed of storage
+    * Memory corruption
+    * Global variables/singletons
   
 ## Testing Times
 
