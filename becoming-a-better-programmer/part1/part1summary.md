@@ -452,6 +452,76 @@ A comment should explain why-but only if it's not already clear.
   
 ## Testing Times
 
+### Why Test?
+
+  * Problems are found
+  
+### Shortening the Feedback Loop
+
+  * Good testing strategies shorten the feedback loop, so we can work most effectively:
+    * We know that our code works when it's used in the field and returns accurate results to users.
+    * To ensure correctness before we ship, the QA team tests candidate releases
+    * We want to check that our new subsystems work before integrating them into the project.
+    * The subsystems are comprised of smaller units: classes and functions.
+  * The shorter the feedback loop, the faster we can iterate over design changes, and the more confident we can feel about our code.
+  
+> **Key:**  To improve our software development we need rapid feedback, to learn of problems as soon as they appear. Good testing strategies provide short feedback loops.
+
+### Code That Tests Code
+
+  * Work smarter, not harder
+    * Your IDE can highlight syntax errors as you type.
+  * Computers can run tests rapidly and repeatedly, reducing the feedback loop.
+  
+### Who Writes the Tests?
+
+  * Unit-test engineer - specializes in verifying the code of an upstream programmers.
+  
+> **Key:**  We need tests at all levels of the software stack and development process. However, programmers particularly requires tests at the smallest scope possible, to reduce the feedback loop and help develop high-quality software as quickly and easily as possible.
+
+### Types of Tests
+
+  * Unit tests
+    * Unit tests specifically exercise the smallest "units" of functionality in isolation, to ensure that they each function correctly.
+  * Integration tests
+    * These tests inspect how individual units integrate into larger cohesive sets of co-operating functionality.
+  * System tests
+    * Otherwise known as end-to-end tests, these can be seen as a specification of the required functionality of the entire system.
+    
+### When to Write Tests
+
+> **Key:**  Write tests as you write the code under test. Do not postpone test writing, or your tests will not be as effective.
+
+### When to Run Tests
+
+> **Key:**  Encourage tests to be run early and often. Bake them into your build process
+
+> **Key:**  Good development tests do not replace thorough QA testing
+
+### What to Test
+
+### Good Tests
+
+> **Key:**  Bad tests can be a liability. They can impede effective development
+
+### What does a Test Look Like?
+
+####  Test Names
+
+### The Structure of Tests
+
+####  Maintain the Tests
+
+> **Key:**  Maintain your test suite, and listen to it when it talks to you.
+
+####  Picking a Test Framework
+
+### No Code Is an Island
+
+> **Key:**  Global variables and singleton objects are anathema to reliable testing. You can't easily test a unit with hidden dependencies.
+
+> **Key:**  Factoring your code to make it "testable" leads to better code design.
+
 ## Coping with Complexity
 
 ## A Tale of Two Systems
