@@ -490,6 +490,15 @@ A comment should explain why-but only if it's not already clear.
     
 ### When to Write Tests
 
+  * The term TDD (test-driven development) is conflated with test-first development
+  * The test-first cycle is:
+    1.  Determine the next piece of functionality you need.
+    1.  Only then implement that functionality, in the simplest way possible.
+    1.  This is the important part that's often overlooked: now tidy up the code. Refactor unpleasant commonality. Restructure the SUT to have a better internal structure.
+    1.  Go back to step 1 and repeat until you have written passing test cases for all of the required functionality.
+  * This is a great example of a short, feedback loop. 
+    * It is often referred to as the red-green-refactor cycle in honour of unit-test tools that show failing tests as a red progress bar, and passing tests as a green bar.
+    
 > **Key:**  Write tests as you write the code under test. Do not postpone test writing, or your tests will not be as effective.
 
 ### When to Run Tests
