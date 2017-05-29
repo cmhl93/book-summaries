@@ -357,8 +357,27 @@ A comment should explain why-but only if it's not already clear.
 
 ## Expect the Unexpected
 
+### Errors
+
+  * Ensure that your error handling is idiomatic, and uses the appropriate language mechanisms.
+  
+### Threading
+
+  * Make sure you understand basic concurrency principles, and how to decouple threads so they cannot interact in dangerous ways.
+  * Understand mechanisms to reliably and quickly pass messages between thread contexts without introducing race conditions or blocking the threads unnecessarily.
+
+### Shutdown
+
+  * don't enqueue threaded callbacks that target objects already discarded by other threads.
+  
+### The Moral of the Story
+
+> **Key:**  Consider all the potential code paths as you write your code. Do not plan to handle "unusual" cases later: you'll forget and your code will be buggy.
+
 ## Bug Hunting
 
+
+  
 ## Testing Times
 
 ## Coping with Complexity
