@@ -569,4 +569,26 @@ A comment should explain why-but only if it's not already clear.
 
 ## Coping with Complexity
 
+### Blobs
+
+  * Blobs - the components we write
+  * Thes size and number of those blobs determine complexity.
+  * Some software complexity is a natural consequence of size.
+  * Size itself is not the problem.  
+  * We need enough code to meet requirements. 
+    * The problem is how we structure that code. It's how that size is distributed.
+
+### Lines
+
+  * In general, software designs are simpler when there are fewer lines.
+  * The more connections between blobs, the more rigid a design is, and the more interoperation you have to comprehend as you work on a system.
+  * As we add connections, we create actual software systems.
+    * As we add more blobs and, crucially, lines between them, the more complex out systems become.
+    
+### And Finally: People
+
+  * It is the programmer who has the power to introduce incredible complexity, or to reduce a nasty problem down to an elegant and simple solution.
+  * Software complexity is caused by humans working in real-world situations. 
+  * The only way we can reduce complexity is by taking charge of it, and trying to prevent work pressures from forcing our code into unworkable structures.
+  
 ## A Tale of Two Systems
