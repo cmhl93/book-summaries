@@ -503,21 +503,46 @@ A comment should explain why-but only if it's not already clear.
 
 ### When to Run Tests
 
+  * All tests should run on your build server as part of a continuous integration toolchain.
+  * 
+
 > **Key:**  Encourage tests to be run early and often. Bake them into your build process
 
 > **Key:**  Good development tests do not replace thorough QA testing
 
 ### What to Test
 
+  * Your tests must, naturally, test thatt each code unit behaves as required, returning accurate results.
+  * You may want to consider the coverage of your production code that the test cases execute.
+
 ### Good Tests
 
 > **Key:**  Bad tests can be a liability. They can impede effective development
 
+  * These are the characteristics of a good test:
+    * Short, clear name
+    * Maintainable
+    * Runs quickly
+    * Up-to-date
+  * These are some common descriptions of badly constructed tests:
+    * Tests that sometimes run, sometimes fail
+    * Tests that look awful and are hard to read or modify
+    * Tests that are too large
+
 ### What does a Test Look Like?
+
+  1.  Arrange: we prepare the input
+  1.  Act:  we perform the operation
+  1.  Asset:  we validate the results of that operation
 
 ####  Test Names
 
+  * Focused tests have very clear names that read as simple sentences.
+
 ### The Structure of Tests
+
+  * Do not duplicate tests: it adds effort, confusion, and maintenance cost.
+  * A common mistake is to see a class with five methods, and think that you need five tests, one to exercise each method.
 
 ####  Maintain the Tests
 
@@ -525,11 +550,23 @@ A comment should explain why-but only if it's not already clear.
 
 ####  Picking a Test Framework
 
+  * The unit or integration test framework you use shapes your tests, dictating the style of assertions and checks you can use, and the structure of your test code.
+
 ### No Code Is an Island
 
 > **Key:**  Global variables and singleton objects are anathema to reliable testing. You can't easily test a unit with hidden dependencies.
 
 > **Key:**  Factoring your code to make it "testable" leads to better code design.
+
+  * When you test an object that relies on an external interface, you can provide a "dummy" version of that interface in the test case. 
+  * Terms vary in testing circles, but often these are called test doubles.
+  * There are various forms of doubles, but we most commonly use:
+    * Dummies
+      * Dummy objects are usually empty husks - the test will not invoke them, but they exist to satisfy parameter lists.
+    * Stubs
+      * Sub objects are simplistic implementations of an interface, usually returning a canned answer, perhaps also recording information about the calls into it
+    * Mocks
+      * Mock objects are the kings of test double land, a facility provided by a number of different mocking libraries
 
 ## Coping with Complexity
 
