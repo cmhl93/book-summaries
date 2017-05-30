@@ -504,7 +504,6 @@ A comment should explain why-but only if it's not already clear.
 ### When to Run Tests
 
   * All tests should run on your build server as part of a continuous integration toolchain.
-  * 
 
 > **Key:**  Encourage tests to be run early and often. Bake them into your build process
 
