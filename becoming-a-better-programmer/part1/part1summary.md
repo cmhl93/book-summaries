@@ -592,3 +592,30 @@ A comment should explain why-but only if it's not already clear.
   * The only way we can reduce complexity is by taking charge of it, and trying to prevent work pressures from forcing our code into unworkable structures.
   
 ## A Tale of Two Systems
+
+### The Messy Metropolis
+
+> **Key:**  Poor company structure and unhealthy development processes will be reflected by a poor software architecture.
+
+### Incomprehensibility
+
+> **Key:** Maintain the quality of a software design. Bad design leads to further bad design.
+
+### Lack of Cohesion
+
+> **Key:**  The health of the working relationships in your development team will feed directly into the software design. Unhealthy relationsips and inflated egos lead to unhealthy software.
+
+####  Cohesion and Coupling
+
+### Unnecessary Coupling
+
+> **Key:**  Good design takes into account connection mechanisms and the number (and nature) of inter-component connections. The individual parts of a system should be able to stand alone. Tight coupling leads to untestable code.
+
+### Code Problems
+
+> **Key:**  A lax and fuzzy architecture leads to individual code components that are badly written and don't fit well together. It also leads to duplication of code and effort.
+
+### Problems outside the code
+
+> **Key:**  The consequences of a bad architecture are not constrained within the code. They spill outside to affect people, teams, processes, and timescales.
+
