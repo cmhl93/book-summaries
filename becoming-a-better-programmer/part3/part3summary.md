@@ -40,14 +40,14 @@
 
 ####  The Four Stages of Competence
 
-  1.  Conscious incompetence
-    * You don't know something. But you know that you're ignorant.
-  2.  Conscious competence
-    * You know something. And you know that you know it.
-  3.  Unconscious competence
-    * When your knowledge of a topic is so great that is has become second nature
-  4.  Unconscious incompetence
-    * You don't know that you don't know something.
+ * Conscious incompetence
+  * You don't know something. But you know that you're ignorant.
+ * Conscious competence
+  * You know something. And you know that you know it.
+ * Unconscious competence
+  * When your knowledge of a topic is so great that is has become second nature
+ * Unconscious incompetence
+  * You don't know that you don't know something.
     
 ### Learning Models
 
