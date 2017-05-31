@@ -77,9 +77,59 @@
 
 ## Test-Driven Developers
 
+### Driving the Point Home
+
+ * Once software developers gain a mastery of their tools and languages, they are freed to see the bigger shape of the problem to be solved.
+ * The majority of coding disasters are due to programmer error. Crashes happen to programs, but they are caused by the people who learnt to write them.
+ 
+### Success Breeds Complacency
+
+> **Key:** Beware of becoming complacent when you reach a state of "competence." Always code with your brain fully engaged to avoid silly, potentially dangerous, errors.
+
+### Testing Times
+
+ * The driving test ensures that a complex human activity does not end in disaster. It doesn't just encourage people to be good drivers based on good intentions, but mandates it.
+
 ## Relish the Challenge
 
+### It's the Motivation
+
+ * Nobody likes a stale programmer. Least of all, yourself
+
+### What's the Challenge?
+
+ * What excites you about programming? Think about what you'd like to work on right now and why.
+
+### Don't Do It!
+
+ * It is exactly because we have to perform dull tasks all day that we should also seek to balance them with the exciting challenges.
+ * We must be responsible in how we use our time to do this, and whether we use the resulting code or throw it away.
+
+### Get Challenged
+
+ * Work out what you'd like to do. And then do it:
+    * Perform some code katas
+    * Finding a coding problem you'd like to solve, just for the fun of it.
+    * Kick off a personal project.
+    * Maintain a broad field of personal interest
+    * Don't ignore other platforms and paradigms.
+    * Considered looking for a new job if you're not being challenged.
+    * Work with, or meet up with other motivated programmers.
+    * Make sure you can see the progress you're making.
+    * Keep it fresh
+    * Don't be afraid of reinventing the wheel!
+
 ## Avoid Stagnation
+
+> **Key:** Be wary of stagnation. Seeking to become a better programmer, by definition, is not the most comfortable lifestyle.
+
+### Your Skills Are Your Investment
+
+> **Key:** Expect to invest time and effort to grow your skill set. This is a worthwhile investment; it will repay itself.
+
+### Job Security
+
+ * Being a better developer, one with a more rounded skillset, one who is constantly learning, will increase your job security.
 
 ## The Ethical Programmer
 
