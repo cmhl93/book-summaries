@@ -133,6 +133,86 @@
 
 ## The Ethical Programmer
 
+### Attitude to Code
+
+> **Key:** Do not make yourself "indispensable" by writing unreadable or unnecessary "clever" code.
+
+### Legal Issues
+
+> **Key:** Honour software licenses
+
+> **Key:** Ensure appropriate credit is given for work you reuse in your codebase.
+
+### Attitude to People
+
+> **Key:** Good attitudes towards code are also good attitudes to other programmers
+
+> **Key:** Do not write software that will make another person's life worse. This is an abuse of power
+
+### Teammates
+
+> **Key:** Treat others as you would like them to treat you.
+
+### Managers
+
+> **Key:** The ethical programmer takes responsibility for the quality of the product at all times.
+
+### Employer
+
+ * Treat your employer with respect.
+
+### Yourself
+
+> **Key:** A tired programmer is of no use to anyone. Do not overwork. Know your limits.
+
 ## A Love for Languages
 
+> **Key:** Don't become a one-trick pony. Position yourself to face new challenges, learn, and grow as a developer.
+
+### Love All Languages
+
+> **Key:** A good programmer knows many languages, and multiple idioms, broadening their palette of solutions. It improves the code they write.
+
+### Love Your Language
+
+> **Key:** Working with your programming language is a relationship you have to work at each day.
+
+### Cultivating Your Language Relationship
+
+#### Love and Respect
+
+> **Key:** Love your language! Work in a language you enjoy/
+
+#### Commitment
+
+> **Key:** To write the best code in a language, you should commit to its styles and idioms rather than force your own upon it.
+
+#### Communication
+
+> **Key:** Good programmers are good communicators. They talk, write, code, listen, and read well.
+
+#### Patience
+
+> **Key:** Don't expect to become a language master overnight, and don't get frustrated whilst you work at it.
+
+### Shared Values
+
+ * A strong glue that holds many relationships together is a common sense of morals, values, and beliefs.
+ 
 ## Posturing Programmers
+
+### Basic Computer Posture
+
+> **Key:** Take care of yourself. Maintain good posture as you work.
+
+### The Debugging Posture
+
+ * To adequately support your body and prevent further strain, follow these steps:
+   * Lean forward slightly
+   * Place your elbows on the desk on front of you.
+   * Extend your forearms vertically upwards.
+   * Lean your head against your arms
+   * Sigh
+ 
+
+ 
