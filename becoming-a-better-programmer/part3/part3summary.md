@@ -42,11 +42,11 @@
 
   1.  Conscious incompetence
     * You don't know something. But you know that you're ignorant.
-  1.  Conscious competence
+  2.  Conscious competence
     * You know something. And you know that you know it.
-  1.  Unconscious competence
+  3.  Unconscious competence
     * When your knowledge of a topic is so great that is has become second nature
-  1.  Unconscious incompetence
+  4.  Unconscious incompetence
     * You don't know that you don't know something.
     
 ### Learning Models
