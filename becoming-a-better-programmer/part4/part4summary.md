@@ -7,8 +7,22 @@
 
 [This Time I've Got It](#this-time-ive-got-it)
 
-### Smarter, Not Harder
+## Smarter, Not Harder
 
-### It's Done When It's Done
+### Pick you battles
 
-### This Time I've Got It
+####  Battle tactics
+
+##### Reuse Wisely
+
+##### Make it someone else's problem
+
+##### Only Do what you have to
+
+##### Put it on a spike
+
+##### Prioritise
+
+## It's Done When It's Done
+
+## This Time I've Got It
