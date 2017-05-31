@@ -597,25 +597,98 @@ A comment should explain why-but only if it's not already clear.
 
 > **Key:**  Poor company structure and unhealthy development processes will be reflected by a poor software architecture.
 
-### Incomprehensibility
+#### Incomprehensibility
 
 > **Key:** Maintain the quality of a software design. Bad design leads to further bad design.
 
-### Lack of Cohesion
+#### Lack of Cohesion
 
 > **Key:**  The health of the working relationships in your development team will feed directly into the software design. Unhealthy relationsips and inflated egos lead to unhealthy software.
 
 ####  Cohesion and Coupling
 
-### Unnecessary Coupling
+  * Key qualities of software design are cohesion and coupling.
+  * Strong cohesion
+    * Cohesion is a measure of how related functionality is gathered together and how well the parts inside a module work as a whole.
+    * Cohesion is the glue holding a module together.
+    * Weakly cohesive modules are a sign of bad decomposition.
+    * Each module must have a clearly defined role, and not be a grab bag of unrelated functionality.
+  * Loose coupling
+    * Coupling is a measure of the interdependency between modules; the amount of wiring to and from them.
+
+#### Unnecessary Coupling
 
 > **Key:**  Good design takes into account connection mechanisms and the number (and nature) of inter-component connections. The individual parts of a system should be able to stand alone. Tight coupling leads to untestable code.
 
-### Code Problems
+#### Code Problems
 
 > **Key:**  A lax and fuzzy architecture leads to individual code components that are badly written and don't fit well together. It also leads to duplication of code and effort.
 
-### Problems outside the code
+#### Problems outside the code
 
+  * The development team
+  * Slow development cycle
+  * Support engineers
+  * Third-party support
+  * Intra-company politics
 > **Key:**  The consequences of a bad architecture are not constrained within the code. They spill outside to affect people, teams, processes, and timescales.
 
+### Design Town
+
+####  Locating functionality
+
+  * An architecture helps you to locate functionality: to add it, to modify it, or to fix it. 
+  * It provides a template for you to slot work into and a map to navigate the system.
+  
+####  Consistency
+
+> **Key:**  A clear architectural design leads to a consistent system.  All decisions should be taken in the context of the architectural design.
+
+> **Key:** Clear architecture helps reduce duplication of functionality
+
+####  Growing the architecture
+
+> **Key:**  Software architecture is not set in stone. Change it if you need to.  To be changeable, the architecture must rename simple. Resist changes that compromise simplicity.
+
+####  Deferring Design Decisions
+
+  * One of the worst things you can do is design something you don't yet understand.
+  * It is dangerous to add everything you might need to a software design when you first create it.
+  
+> **Key:**  Defer design decisions until you have to take them.  Don't make architectural decisions when you don't know the requirements yet. Don't guess.
+
+####  Maintaining Quality
+
+> **Key:**  Design quality must be maintained. This can only happen when the developers are given responsibility and take it seriously.
+
+####  Managing Technical Debt
+
+  * Technical Debt
+    * A metaphor that leans on the financial world: making a decision to help ship software quickly is like taking on a loan.
+    * It can enable you to do something now that you would not otherwise be able to do.
+    
+####  Tests SHape Design
+
+> **Key:**  Having a good set of automted tests for your system allows you to make fundamental architectural changes with minimal risk.  It gives you space to work in.
+
+> **Key:**  Unit testing your code leads to better software designs, so design for testability.
+
+####  Time for Design
+
+> **Key:**  Good project planning leads to superior designs.  Allot sufficient time to create an archhitectural masterpiece - they don't appear instantly.
+
+####  Working with design
+
+> **Key:**  A team's organization has an inenvitable effect on the code it produces.  Over time, the architecture also affects how well the team works together.  When teams separate, the code interacts clumsily.  When they work together, the architecture integrates well.
+
+### So What?
+
+  * Good architecture is the product of many factors, including:
+    * Actually doing intentional up-front design before ploughing into code.
+    * The quality and experience of the designers.
+    * Keeping the design clearly in view as development progresses.
+    * The team being given, and taking responsibility for the overall design of the software.
+    * Never being afraid of changing the design: nothing is set in stone.
+    * Having the right people on the team
+    * Making design decisions at the appropriate time, when you know all the information to be able to make them.
+    * Good project management, with the right kinds of deadlines
