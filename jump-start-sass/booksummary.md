@@ -152,6 +152,75 @@
     ```
 ##  Variables
 
+  * A variable is a storage location paired with an associated identified (aka a variable name).
+  * So a variable is basically made up of a key and a value, the former being used to retrieve the latter.
+  
+  * Ex:
+    ```
+    //Variable assignment
+    $my-variable: 42px;
+    
+    //Variable usage
+    .foo{
+     width: $my-variable;
+    }
+    ```
+  * Dashes + Underscores = Same
+    * Dashes and underscores are considered the strict equivalent in variable names; hence, $my-variable and $my_variable actuallt refer to the same location.
+    
+###  Data Types
+
+ * There are seven data types in SassScript:
+   * string (e.g. "Hello world", kittens)
+   * number (e.g. 42, 1337px)
+   * color (e.g. hotpink, rbg(1,33,7), #BADA55)
+   * list (e.g. (a,b,c), a b c)
+   * map (e.g. (a: 1, b:2))
+   * bool (true or false)
+   * null (null)
+   
+#### Strings
+
+  * A string is nothing more than a series of characters, such as Hello World!:
+   ```
+   $my-variable: 'Hello world!';
+   ```
+  * In Sass, strings do not have to be quoted. It is perfectly fine for a string to live by itself without being wrapped withing quotes, as long as non-identifier characters are escaped.
+  * An unquoted string is strictly equivalent to its quoted counterpart, so that "abc" (or 'abc') is the same as abc.
+  * String variables are useful for storing some CSS values, property anems, or identifiers, such as sans-serif, left, or margin-bottom.
+   ```
+   $font-name: 'Helvetica';
+   $font-type:  sans-serif;
+   
+   .foo {
+    font-family: $helvetica, $font-type;
+   }
+   ```  
+  * Strings can be concatenated (joined together) using the plus symbol (+). You can thus create a new string from several chunks:
+   ```
+   $base-path: '/images/';
+   $file-name: 'kittens';
+   $extension: 'png';
+   $file-path: $base-path + $file-name + '.' + $extension;
+   // -> '/images/kittens.png'
+   ```
+ 
+#### Numbers
+ 
+##### Units
+ 
+#### Colors
+ 
+#### Booleans
+ 
+##### The not Keyword
+
+#### Null
+
+#### Lists
+
+#### Maps
+ 
 ##  Functions and Mixins
 
 ##  Loops and Conditions
