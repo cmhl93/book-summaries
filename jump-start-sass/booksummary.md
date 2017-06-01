@@ -79,6 +79,77 @@
 
 ##  Getting Started
 
+  * Sass (mostly) exists as both a Ruby gem (sometimes called Ruby Sass) and a wrapped C/C++ library (also known as LibSass).
+
+### Ruby Sass
+
+  * The programming language Ruby handles dependencies as gems. 
+    * A gem is a package that contaains program information along with files to install.
+    * The sass gem is a package containing everything needed to compile Sass stylesheets to CSS.
+
+####  Instally Ruby
+
+  * On Mac OS, Ruby comes preinstalled so there's nothing further to do.
+  * On Debian or Ubuntu Linux distributions, you need to install Ruby manually like so:
+  
+    sudo apt-get install ruby-full
+  
+  * On a Windows machine, you'll have to go through the Ruby Installerr setup, a simple program that helps install and run Ruby.
+  
+####  Installing Sass
+
+  * To install it, open a terminal window. Then type in the following command:
+  
+    gem install sass
+    
+  * Sass is now installed on your machine and you can use the sass command to compile your stylesheets.
+  
+####  Using Sass
+
+  * The Sass gem provides a sass command that accepts a lot of options.
+  * In its simplest form, the sass command accepts an input and an output file, like so:
+  
+    sass input.scss output.css
+    
+  * We can use a watcher programmer to detect when a file is being changed and execute a task when it happens.
+  * Sass comes with a built-in watch features: the --watch option. Every time the input file is being modified, Sass will recompile it and override the output file:
+  
+    sass --watch input.scss output.css
+    
+  * You will want Sass to compile the whole folder without having to specify a list of files manually. This is how you do it:
+  
+    sass --watch sass/:stylesheet/.
+    
+### LibSass (with node-sass)
+
+  * LibSass is unusuable on its own and must be wrapped by another library to provide an inteerface for compiling Sass stylesheets to CSS.
+  
+####  Installing Node.js
+
+  * The easiest way to install Node.js is by using one of the installers on the homepage of the project. Once done, you'll be able to install node packages.
+  
+####  Installing node-sass
+
+  * Node-sass is a Node package distributed through npm. 
+  * It provides both a command-line interface and a JavaScript API to interact with the inner program.
+  * Your first task is to install it - either locally in the project with --save or globally with -g:
+  
+    npm install node-sass -g
+    
+####  Using Sass
+
+  * Compiling a single file to CSS is the same as with Ruby Sass:
+  
+    node-sass input.scss output.css
+  
+  * You can also add the --watch flag in the same fashion to tell Sass to automatically recompile the file on change:
+  
+    node-sass --watch input.scss output.css
+  
+  * However, it's slightly different when you want to watch a folder:
+
+    node-sass --watch sass/ --output stylesheets/
+
 ##  Variables
 
 ##  Functions and Mixins
