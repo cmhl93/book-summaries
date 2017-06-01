@@ -207,7 +207,72 @@
  
 #### Numbers
  
+  * A number in Sass can - but does not necessarily - have a unit, like 42px.
+    * Both 42 and 42px are numbers, while 42 px and px42 are strings.
+  * You want to make those values easily configurable in order to keep the codebase clean and maintainable:
+    ```
+    $container-max-width: 1180px;
+    .container {
+      width:  100%;
+      margin: 0 auto;
+      max-width:  $container-max-width;
+    }
+    ```
+  * Sass supports the five basic operators: plus (+), minus (-), multiply (*), divide (/), and modulo (%).
+  * Some Sass third-party tools such as Compass^2 or SassyMath^3 add extra math features.
+    ```
+    $element-width: 400px;
+    /**
+    * 1.  Size the element
+    * 2.  Horizontally center the element in its container
+    *     @TODO: move to CSS transforms once we drop support for IE 8
+    */
+    
+    .foo {
+      width:  $element-width; /* 1 */
+      position: absolute; /* 2 */
+      left: 50%;  /* 2 */
+      margin-left: ($element-width / -2); /* 2 */
+    }
+    ```
+  * There are three scenarios in which Sass does perform division instead of leaving the / as authored:
+    * If the value, or any part of it, is stored in a variable or returned by a function.
+    * If the value is surrounded by parentheses.
+    * If the value is used as part of another arithmetic expression.
+  * The following code snippet illustrates these scenarios:
+    ```
+    .foo {
+      $gap: 20px;
+      // No variable nore parentheses: no division performed 
+      font: 16px / 2 sans-serif;
+      // Wrapping parentheses: division returning 8px
+      padding: (16px / 2);
+      // Member as variable: division returning 10px
+      margin: $gap / 2;
+      // Arithmetic expression: calculation returning 308px
+      width: 300px + 16px / 2;
+    }
+    ```
+ 
 ##### Units
+ 
+  * Units are not just random strings living at the end of numbers; they actually belong to the number.
+  * The next two examples produce entirely different results:
+    ```
+    $value: 42;
+    $good: $value * 1px;
+    $bad: $value + px;
+    ```
+    * The $good variable multiplies $value with 1px, making the result 42px, a valid number.
+    * On the other hand, the $bad variable simply appends the px string at the end of $value, composing a string.
+    * Having a string in place of a number is not only inconsistent, it can bring new issues, such as it being impossible to perform any further mathematical operations on it.
+  * To have 42px from 42, you need to multiply it by one member of the px unit (1px). 
+  * Similarly, to have 42 from 42px, you have to divide it by one member of the px unit (1px):
+    ```
+    $initial-value: 42;
+    $value-in-px: ($initial-value * 1px); //42px
+    $unitless-value: ($value-in-px / 1px);  //42
+    ```
  
 #### Colors
  
