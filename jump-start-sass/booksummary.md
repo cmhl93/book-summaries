@@ -276,16 +276,221 @@
  
 #### Colors
  
+  * A color is Sass can be expressed in three to four different ways, using:
+    * the rgb(..)/rgba(..) CSS functions (for example, rgb(1,33,7)),
+    * the hsl(..)/hsla(..) CSS functions (for example, hsla(1,33%,7%,0.5)),
+    * the hexadecimal notation (for example, #BADA55)
+    * when available, a keyword name (for example, hotpink)
+  
+  * Avoid Color Keywords
+    * CSS color keywords are not reccommended, unless for rapid prototyping.
+    * Indeed, as English words some of them do a poor job at describing the color they represent, especially for non-native speakers.
+  
+  * By keeping frequently-used colors in variables, we save ourselves from guessing and inventing new colors:
+    ```
+    $brand-color: #BADA55;
+    
+    .logo {
+      color: $brand-color;
+    }
+    ```
+  * Sass native color-manipulation functions, such as darken(..), lighten(..), and mix(..). Let's now consider an alert module with different themes depending on the type of message (information, warning, confirm):
+    ```
+    .message {
+      padding: 10px;
+      border: 1px solid currentcolor;
+    }
+    
+    .message-info {
+      $color: blue;
+      color: $color;
+      background-color: lighten($color, 20%);
+    }
+    
+    .message-danger {
+      $color: red;
+      color: $color;
+      background-color: lighten($color, 20%);
+    }
+    
+    .message-confirm {
+      $color: green;
+      color: $color;
+      background-color: lighten($color, 20%);
+    
+    }
+    ```
+    
 #### Booleans
- 
-##### The not Keyword
 
+  * There are only two boolean values: true and false.
+  * Here's a short example:
+    ```
+    $support-legacy-browsers: true;
+    
+    @if $support-legacy-browsers {
+      .clearfix {
+        *zoom: 1;
+      }
+    }
+    
+    .clearfix:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+    ```
+  
+  * The not keyword
+    * Sass lacks a bang operator (!) to get the opposite of a value, such as if (!value). Instead, it provides the not keyword, which works the same way:
+    ```
+    $bool: false;
+    
+    // "if not false"
+    // which can be rewritten as: "if true"
+    @if not $bool {
+      // We get in there
+    }
+    ```
+
+  * Bang bang not not
+    * The very popular "bang bang you're a boolean" technique (!!value) to coerce a value to a boolean is doable in Sass by chaining two not keywords:
+    ```
+    $value: 'Hello world';
+    $coerced-value: not not $value; // true
+    ```
+    * A falsy value would return false, while a truthy value would return true.
+    * In Sass, only two values are falsy: false and null, so anything else returns true.
+    
 #### Null
 
+  * Null is both the value and its type, making it a very specific element of the Sass language.
+  * Note that it has to be lowercase and unquoted for it to be from null tye; NULL or any variant containing uppercase letters is from type string:
+    ```
+    $type: type-of(null); //  null
+    $type: type-of(NULL); //  string
+    $type: type-of('null'); //  string
+    $type: type-of('n' + 'u' + 'LL'); //string
+    ```
+  * null is commonly used to describe an empty value that will be filled later on, or an empty state that's neither true nor false.
+  * null has a very handy behavior: when evaluated as a CSS value, Sass will omit the declaration altogether:
+    ```
+    $value: null;
+    
+    .foo {
+      // This declaration will not be output since
+      // The variable is evaluated as 'null'
+      color: $value;
+    }
+    ```
+  * Instead of testing each argument to see if it has a value, we can take advantage of a null value not being output:
+    ```
+    @mixin absolute($top: null, $right: null, $bottom: null, $left: null) {
+      position: absolute;
+      top: $top;
+      right: $right;
+      bottom: $bottom;
+      left: $left;
+    }
+    ```
+  * Here's an example:
+    ```
+    .foo {
+      @include absolute($top: 13px, $left: 37px);
+    }
+    ```
+  * The Sass snippet would be compiled to:
+    ```
+    .foo {
+      position: absolute;
+      top: 13px;
+      left: 37px;
+    }
+    ```
+    
 #### Lists
 
+  * They are basically what other languages call arrays.
+  * Arrays are often used to store a collection of related values, usually to iterate over them in order to perform a repeated action.
+  * A Sass list is a collection of zero or more values separated by either spaces or commas.
+  * Values from a list can be of any type, including list, leading to nested lists:
+    ```
+    $list: (42, hotpink, 'kittens');
+    ```
+  * The first point to know about lists is that it's the delimiter that makes a list, not the wrapping parentheses. 
+  * Parentheses are optional unless the list is empty.
+    ```
+    $empty-list: ();
+    ```
+  * Any two or more values separated by a space or a comma form a list:
+    ```
+    $value: Hello world;
+    $type: type-of($value); //  list
+    $length: length($value); //  2
+    $separator: list-separator($value); //  space
+    ```
+` * To make it an explicit string, wrap it in (single or double) quotes. Here's another - preferred - way of describing the previous list:
+    ```
+    $value: ('Hello', 'world');
+    $type: type-of($value); //  list
+    $length: length($value); //  2
+    $separator: list-separator($value); //  comma  
+    ```
+  * While it's possible to call list-related functions on single values, it does not make the value an actual list:
+    ```
+    $value: 'foo';
+    $length: length($value);  //1
+    $type: type-of($value); // string
+    ```
+  * Sass allows lists that use a comma as a separator to have a trailing comma after the last value. By adding a trailing comma to any value, Sass coerces it into a list:
+    ```
+    $value: ('foo',);
+    $length: length($value);  //1
+    $type: type-of($value); // list
+    ```
+    * Lengthy matters
+       * The length(..) function returns the length of a value (which might be greater than one for lists and maps), but not the length of a string! To count the number of characters in a string, use str-length(..).
+       
 #### Maps
- 
+
+  * A map is a series of pairs of associated keys and values where keys are unique to each map.
+  * A map uses its keys to find their associated value.
+  * You would use a list when you need an index, and a map when you need a key (such as a string):
+    ```
+    $message-themes: (
+      'info': deepskyblue,
+      'danger': tomato,
+      'warning': gold,
+      'confirm': lightgreen,
+    );  
+    ```
+  * You can pick a specific value from the map based on its key using the map-get(..) function:
+    ```
+    .message-info { color: map-get($message-themes, 'info');  }
+    .message-danger  {  color: map-get($message-themes, 'danger'); }
+    .message-warning  { color: map-get($message-themes, 'warning'); }
+    .message-confirm  { color: map-get($message-themes, 'confirm'); }
+    ```
+  * Keys of a map can be of any type and not just strings. Yes, lists and maps as well, although they have to remain unique:
+    ```
+    $color-names: (
+      #ff0000: 'blood';
+      #00ff00: 'grass';
+      #0000ff: 'ocean';
+    );
+    ```
+  * No trails with the trailing comma
+    * It is possible to add a trailing comma to the last pair of a map. I would indeed recommend doing so as it makes adding new values easier, and git diffs simpler.
+  * Empty Maps
+    * An empty map is described exactly like an empty list [()]. Therefore, when testing the type of the () value with the type-of(..) function, it returns list (as maps were added to the language later on).
+    
+### Scope
+
+  * 
+  * The !global Flag
+  * The !default Flag
+
+
 ##  Functions and Mixins
 
 ##  Loops and Conditions
