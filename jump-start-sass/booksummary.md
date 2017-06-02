@@ -512,8 +512,70 @@
    }
    ```
   * The !global Flag
+    * To definitely override a global variable from a local scope, we use the !global flag.
+      * The variable will not be overshadowed but effectively replaced by a new value.
+  * Ex:
+    ```
+    $padding: 10px;
+    
+    .module {
+     $padding: 20px !global;
+     padding: $padding; //20px
+    }
+    
+    .foo {
+     padding: $padding; //20px
+    }
+    ```
   * The !default Flag
+    * The !default flag makes it possible to assign a variable if it doesn't have a value yet:
+    ```
+    $padding: 10px;
+    $padding: 20px !default;
+    
+    .foo {
+      padding: $padding;  //10px
+    }
+    ```
+    * It's recommended that you use !default when declaring default configuration variables.
+    * The default flag is incredibly useful when building third-party libraries and modules. It enables users to configure the library, but still provide defaults if they don't:
+     ```
+     // You configuration of the third party library
+     $third-party-output-prefix: false;
+     
+     // The third party library has some default values such as 
+     // $third-party-output-prefixL true !default;
+     // In this case, the value is 'false' thanks to '!default'.
+     @import 'third-party-library';
+     ```
+    * The !default flag also comes in handy when dealing with dynamically created Sass files from user input, such as theme files:
+    ```
+    // User theme stylesheet containing:
+    // $brand-color: hotpink;
+    @import 'user-theme';
+    
+    // Default configuration
+    $brand-color: grey !default;
+    
+    /foo {
+      color: $brand-color;  // hotpink
+    }
+    ```
+    * Bear in mind that variables with null value are treated as unassigned by default, which means that a variable assignment with !default will override a variable assignment to null:
+    ```
+    $padding: null;
+    $padding: 20px !default;
+    
+    .foo {
+      padding: $padding; // 20px
+    }
+    ```
 
+### Interpolation
+
+### Creating Meaningful Variables
+
+### CSS Custom Properties or Sass Variables
 
 ##  Functions and Mixins
 
