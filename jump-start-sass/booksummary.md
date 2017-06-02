@@ -486,7 +486,31 @@
     
 ### Scope
 
-  * 
+  * Depending on where a variable is assigned, however, its access might be restricted to a specific code block; this is what we usually call a scope.
+  * A variable defined in a mixin, function, or rule set is local by default.  This means that a global variable and a local variable can share the same name seamlessly: the local will be restricted to its own scope, while the global will be accesible elsewhere in the document.  This is reffered to as variable shadowing in Sass.
+  * When declaring in an inner scope a variable whose name already exists in the global namespace, the local variable is said to be shadowing the global one:
+   ```
+   $padding: 10px;
+   
+   .module {
+    $padding: 20px;
+    padding: $padding; // 20px
+    
+   .foo {
+    padding: $padding; // 10px
+   } 
+   
+   ```
+   * Within the scope, the value of $padding is now 20px, but anywhere else in the document, it still refers to the global value, 10px.  Thus, the code snippet will be compiled to:
+   ```
+   .module {
+    padding: 20px;
+   }
+   
+   .foo {
+     padding: 10px;
+   }
+   ```
   * The !global Flag
   * The !default Flag
 
