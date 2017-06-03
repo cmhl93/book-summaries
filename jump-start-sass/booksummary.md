@@ -573,10 +573,88 @@
 
 ### Interpolation
 
+  * Interpolation is often referred to as variable interpolation or variable substitution.
+  * Interpolating is the process of evaluating an expression or a string containing one or more variables, yielding a result in which the variables are replaced with their corresponding values in memory.
+  * Thanks to variable interpolation, we can have a string containing variable(s) without having to concatenate several string chunks:
+   ```
+   $name: 'Hugo';
+   
+   .foo {
+    content: 'Hello #{$name}!';
+   }
+   ```
+    * By wrapping a variable identifier with #{}, it tells Sass to treat the content of the variable as plain CSS.
+  * One of the most common use cases for interpolating a variable is within the calc(..) CSS function.
+   ```
+   .main {
+    $sidebar-width: 300px;
+    width: calc(100% - #{$sidebar-width});  //  calc(100% - 300px)
+   }
+   ```
+  * Sass will only evaluate Sass variables in a media query if they're within a pair of parentheses. So when dynamically creating media blocks, you need to wrap the whole thing in parentheses.
+   ```
+   $media: screen;
+   $feature: min-width;
+   $value: 1337px;
+   
+   @media #{$media} and ($feature: $value) {
+    //  ...
+   }
+   ```
+  * To use a variable in a selector, we have to interpolate it:
+   ```
+   $section: 'home';
+   
+   .section-#{$section} {
+    background: transparent;
+   }
+   ```
 ### Creating Meaningful Variables
 
+  * Use hyphens to separate words within your variables names rather than underscores or camel case:
+   ```
+   $brand-color: #BADA55;
+   ```
+  * A constant is an immutable value that, unlike a variable, cannot be reassigned.  Sass does not support actual constants.
+  * The variable name should be used to describe the value without explicitly referring to it contents.
+  * Store colors in variables with representative names, and then use these in other generic variables where the original meaning is retained:
+   ```
+   $gold: hsl(42, 78%, 54%);
+   $dark-blue: rgb(13,33,70);
+   
+   $primary-theme-color: $gold;
+   $secondary-theme-color: $dark-blue;
+   ```
+  * Avoid naming your variables after the way they're used such as $border-color.  
+    * Later you will use these variables for completely different purposes, and you'll be left with a name that makes little sense, or is misleading even.
+    * Don't be too specific with your variable names.
+    
 ### CSS Custom Properties or Sass Variables
 
+  * CSS Custom properties are often referred to as CSS variables.
+    * Custom propreties share the same purpose as variables, limiting code repetition by associating value to specific identifies (variable names).
+  * Ex:
+   ```
+   /**
+    * Declaring a CSS custom property named 'main-color' at root level
+    * so that it is accessible anywhere in the document
+    */
+   
+   :root {
+    --main-color: #BADA55;
+   }
+   
+   /**
+    * Using the 'main-color' variable through the 'var(..)' function
+    */
+   
+   body {
+    background-color: var(--main-color);
+   }
+   ```
+  * It is recommended to declare global variables on: root because it's the root of the document, making those custom properties accessible anywhere in it.
+  * Sass variables are scoped and rely on a global scope to be accessible anywhere, while CSS variables respect the cascad principle and should be defined on the uppermos element to flow down the document.
+  
 ##  Functions and Mixins
 
 ##  Loops and Conditions
