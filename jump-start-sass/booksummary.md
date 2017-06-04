@@ -657,6 +657,10 @@
   
 ##  Functions and Mixins
 
+### Functions
+
+  * A function is a chunk of code that returns a result, possibly accepting arguments.  It's an ideal way to extract repeated pieces of code into a single reusuable pattern.
+
 ##  Loops and Conditions
 
 ##  Nesting
