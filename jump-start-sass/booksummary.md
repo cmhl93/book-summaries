@@ -710,7 +710,219 @@
   * Parameters
     * Parameters and Arguments
       * A parameter is the variable that's part of the function's signature (function declaration). An argument is an expression used when calling the function.
+    * Parameters can also have a default value - in which case they are called optional parameters.
+    * To define an optional parameter, do as if you were declaring a variable in the function signature (without the closing semicolon):
+    ```
+    //  '$a' is mandatory and '$b' is optional (default value being 2)
+    @function multiply($a, $b: 2) {
+      @return ($a * $b);
+    }
+    ```
+    * Note that optional parameters must come after any non-optional parameters (or it will throw an error)
+    * When calling a Sass function, you can either pass arguments in the order they are defined, or you can use what we call name arguments or keyword arguments.
+    * To use named arguments, do as if you were defining variables in the function call:
+    ```
+    $element-width: 400px;
+    
+    .foo {
+      // Calling 'multiply(..)' with arguments in the defined order 
+      width: multiply($element-width, 3);  // 1200px
+      // Calling 'multiply(..)' relying on default value
+      // for second parameter
+      padding: multiply(10px); //20px
+    }
+    
+    .bar {
+      //Calling 'multiply(..)' using keyword arguments
+      width: multiply($b: 3, $a: $element-width); // 1200px
+    }
+    ```
+    * These are three benefits of using named arguments over definition order:
+    1.  They can be declared in any order
+    2.  Arguments are obvious to understand when named
+    3.  In functions with many optional parameters, only relevant arguments can be defined, leaving the others to their default value.
+    * Here's an example:
+    ```
+    @function set-color-theme(
+      $primary,
+      $secondary: darken($primary, 10%),
+      $tertiary: lighten($primary, 10%)
+    ) {
+      //  Do something
+    }
+    
+    $color-theme: set-color-theme(hotpink, $tertiary: pink);
+    ```
+    * In this example:
+      * $primary is passed without being named, simply as a first argument;
+      * $secondary is left to its default value;
+      * $tertiary is named and set to pink
+  
+  * Usage      
+    * Functions can be used anywhere variables can so within selectors, media queries, properties, values, and inside variables, functions, mixins, and so on.
+    * Like variables, they might need to be interpolated when used in unconventional places:
+    ```
+    //  Just for the sake of demonstration, here's a function declaration
+    @function my-function() {
+      @return 'foo';
+    }
+    
+    //  Calling the function in itself does not work and throws an error:
+    //  > 'Invalid CSS after " my-function(()": expected "{", was ";"'
+    .foo {
+      my-function();
+    }
+    
+    //  Calling the function in place of a property works as long as it is properly interpolated.
+    ```
+    
+    ```
+    .foo {
+      #{my-function()}: 'bar';
+    }
+    
+    //  Calling the function in place of a selector works as long as it is properly interpolated.
+    .foo, #{my-function} {
+      content: 'bar';
+    }
+    
+    //  Calling the function inside a variable value works perfectly.
+    $foo: my-function();
+    
+    //  Calling the function in place of a media query value works perfectly
+    @media (min-width: my-function()) { .. }
+    
+    //  Calling the function in place of a feature query value works perfectly
+    @supports (content: my-function()) { .. }
+    ```
+    
+    * Arguments List
+      * Functions can have an unknown number of parameters if ever needed. To do so, simply add an ellipsis (...) to the last parameter of the signature:
+      ```
+      //  'map-deep-get' intends to help getting values
+      //  deeply nested in maps
+      //  The first parameter is the map to browse
+      //  Any parameter after that are keys nested within each others
+      @function map-deep-get($map, $keys...) {
+        @each $key in $keys {
+          $map: map-get($map, $key);
+        }
+        @return $map;
+      }
+      ```
+      * This type of argument is often referred to as arg-list and is sometimes referred to as variable arguments.
+      * arglist is in fact a valid Sass data type that only comes up when dealing with arguments lists.
+      * You can loop on an arguments list the way you would a list, and access its items with the nth(..) function the same way:
+      ```
+      @function dummy($mandatory, $extra-arguments...) {
+        //  Do something
+      }
       
+      $foo: dummy('Hello', 'how', 'are', 'you', '?');
+      //  ->  $mandatory: 'Hello'
+      //  ->  $extra-arguments: 'how', 'are', 'you', '?'
+      ```
+      
+      * Arguments lists are much more powerful than simply creating aliases, as they can be used to expand a lsit or a map of values into a series of arguments passed to a function or mixin.
+      
+  * Native Functions
+    * Sass provides a lot of built-in functions to make writing styles an easier task.
+    * Ex: lighten(..), darken(..), or lists and maps with length(..)
+    
+### Mixins
+
+  * A mixin is a function that can output code rather than return a result.
+  * While a function is a good wway to abstract a repeated operation based on parameters, a mixin is a terrific way to abstract repeated style patterns - all with the ability to adapt the output based on parameters.
+  * A mixin can be defined anywhere but inside a function or another mixin.
+  * To define it, there's the @mixin notation.
+  * As for the function declaration, the name of the mixin comes right after it, and then the parameters.
+  * When mixins have no parameters, the parentheses are optional.
+  * Ex:
+  ```
+  @mixin center {
+    width: 100%;
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  ```
+  * To use a mixin, you have to call it with the @include directive (+ symbol in Sass indented syntax) followed by the name of the mixin.
+  * Ex:
+  ```
+  .container {
+    include center;
+  }
+  ```
+  
+  * Parameters
+    * Mixins will accept parameters since this is where they really kick in.  These parameters can have a default value.
+    * The default value of a parameter can be the value of another parameter defined before it.
+    * Ex:
+      * The default value of the $height parameter is the value of the $width argument:
+    ```
+    //  Sizing mixin from width and height
+    //  If height is omitted, same as width
+    //  @param {Length} $width - element width
+    //  @param {Length} $height [$width] - element height
+    @mixin size($width, $height: $width) {
+      width: $width;
+      height: $height;
+    }
+    
+    //  Usage
+    .foo {
+      @include size(100%, 42px);
+    }
+    
+    .bar {
+      @include size(100px);
+    }
+    ```
+    * When compiling this code, Sass will render:
+    ```
+    .foo {
+      width: 100%;
+      height: 42px;
+    }
+    
+    .bar {
+      width: 100px;
+      height: 100px;
+    }
+    ```
+  * Inner Content
+    * The @content directive allows authors to pass blocks of styles to their mixins.
+    * When a mixin has one or more @content directives defined in its core, it can be given custom content between braces ({ and }), like so:
+    ```
+    @mixin my-mixin {
+      @content;
+    }
+    
+    .foo {
+      @include my-mixin {
+        //  We can add stuff here
+      }
+    
+    }
+    ```
+    * The @content directive is especially useful when building dynamic selectors or context blocks, such as @media or @supports.
+    * @content immutability
+      * You store, alter, or iterate the content of a @content directive. What is being passed to a mixin through @content is immutable and unknown.
+    * Variables local to a mixin such as those defined in the mixin signature or the mixin scope cannot be used in passed style blocks.
+    * They only exist within the mixin scope and not anywhere else.  If you try to use one of those variables in a passed style block, it will either default to the global variable if any, or will simply throw an error:
+    ```
+    @mixin my-mixin($argument) {
+      @content;
+    }
+    
+    //  Does not work and throws an error
+    //  > 'Undefined variable: "$argument".'
+    .foo {
+      @include my-mixin('foo') {
+        content: $argument;
+      }
+    }
+    ```
 ##  Loops and Conditions
 
 ##  Nesting
