@@ -660,7 +660,57 @@
 ### Functions
 
   * A function is a chunk of code that returns a result, possibly accepting arguments.  It's an ideal way to extract repeated pieces of code into a single reusuable pattern.
-
+  * A function definition starts with @function, then the name of the function, then a pair of parentheses. The core of the function is then written between braces ({..}).
+  * Here's a function that accepts no arguments and returns the base URL for the assets folder as a string:
+  ```
+  // The 'get-base-url()' function has no parameter
+  @function get-base-url() {
+    @return '/assets/';
+  }
+  
+  // Usage
+  .module {
+    background-image: url(get-base-url() + 'unicorn.png');
+  }
+  ```
+  * If we'd forgotten the @return statement from our previous function, Sass would have thrown:
+  ```
+  Function get-base-url finished without @return
+  ```
+  * A function can be defined almost anywhere in a document and not just at root level. When defined within a rule set, a function is scoped to that rule set, the same way variables are local when defined within a specific block.
+  * A local function sharing its name with a global one will shadow the latter inside the scope where it's defined:
+  ```
+  @function get-base-url(..) {
+    @return '/assets/';
+  }
+  
+  .module {
+    // Shadow 'get-base-url()' functions within '.module {}'
+    @function get-base-url() {
+      @return 'http://cdn.example.com/assets/';   
+    }
+    background-image: url(get-base-url() + 'unicorn.png');
+  }
+  
+  .foo {
+    background-image: url(get-base-url() + 'kittens.png');
+  }
+  ```
+  * The compiled CSS of this example looks like this:
+  ```
+  .module {
+    background-image: url('http://cdn.example.com/assets/unicorn.png');
+  }
+  
+  .foo {
+    background-image: url('/assets/kittens.png');
+  }
+  ```
+  
+  * Parameters
+    * Parameters and Arguments
+      * A parameter is the variable that's part of the function's signature (function declaration). An argument is an expression used when calling the function.
+      
 ##  Loops and Conditions
 
 ##  Nesting
