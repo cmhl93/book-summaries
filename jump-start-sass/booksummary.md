@@ -923,8 +923,119 @@
       }
     }
     ```
+    
 ##  Loops and Conditions
 
+### Conditions
+
+  * Conditions are a pillar of any piece of software ever written.
+    * They are path switches in our programs.
+  * The basic conditional structure exists under the form of if condition then...else....
+  * Sass uses @if and @else as directives.
+  * A conditional structure in Sass always starts with the @if keyword, directly followed by an expression.
+  * The code to be executed if the expression matches lives between an opening and a closing brace ({ .. }):
+  ```
+  @if $condition {
+    //  Do something
+  } @else {
+    //  Do something else
+  }
+  ```
+  * How Sass evaluates the conditions expression to determine which code block to execute:
+    * If the result is true, the condition is truthy, otherwise it's said to be falsy.
+    * Only two values are falsy in Sass: false and null.
+  * If the expression is evaluated to either false or null, the @else block is executed. Otherwise the condition is truthy and the @if block is executed (even for values such as 0, "" or ()).
+  
+  * Multiple Conditions
+    * You can place extra conditions between the first @if and the optional @else statement. These are written using a combination of both keywords, like so: @else if <condition>,
+    * Be aware that as soon as a condition is evaluated to true, its code is executed and no other condition in the chain can be matched.
+    
+  * Conditional Operators
+    * Each component of the expression is evaluated on its own, then the results of these evaluations interact with the and and or keywords.
+    * Expressions are evaluated from left to right.
+    
+  * Ternary Functions
+    * A ternary operator takes three arguments.
+      * The first one is usually a condition that is evaluated, depending on whether its result is truthy or falsy; the second or third argument is returned respectively.
+    * Most languages use a syntax borrowed from C, using a question mark (?) after the condition and a colon (:) between the two possible outcomes.
+    * Ex:
+    ```
+    var backgroundColor = error ? 'red' : 'green';
+    ```
+    * Sass has a ternary function.  The function is appropriately named if(..).
+    * The first argument of the if(..) function is the condition, the second one is the result if the condition is truthy, and the third one is returned value if the condition is falsy.  This function is useful when wanting to shorten an @if/@else statement to a single line:
+    ```
+    $background-color: if($errer, red, green);
+    ```
+    * If the $error variable is truthy, $background-color will be red, otherwise it will be green. We could have written this using a regular condition as well:
+    ```
+    $background-color: green;
+    
+    @if $error {
+      $background-color: red;
+    }
+    ```
+    
+### Loops
+
+  * The for-loop
+    * The for-loop is a logical structure that iterates a given number of times.
+    * In Sass, the for-loop expects a starting index and an ending index, and runs as many times as needed from start to end.
+    * A for-loop is written as follows:
+      1.  The @for directive
+      2.  The name of the index variable (usually but not necessarily $i)
+      3.  The keyword from
+      4.  The start index (as a static number, a variable, or a function call)
+      5.  Either the keyword through (end index inclusive) or the keyword to (end index exclusive).
+      6.  The end index (as a static number, a variable, or a function call)
+    * Ex:
+    ```
+    @for $i from 1 through 10 {
+      .item:nth-child(#{$i}) {
+        animation-delay: ($i - 1) * 0.1s;
+      }
+    }
+    ```
+      
+  * The each-loop
+    * The each-loop is a logical structure aiming at iterating over a collection.
+    * An each-loop runs as many times as the number of elements in a collection (items in a list, key/value pairs in a map).
+    * A simple each-loop is written as follows:
+      1.  The @each directive
+      2.  The name of the item variable
+      3.  The keyword in
+      4.  The collection to iterate
+    * Ex:
+    ```
+    $authors: ('hugo', 'miriam');
+    
+    @each $author in $authors {
+      .section-#{$author} {
+        background-image: url('/images/authors/#{$author}.jpg');
+      }
+    } 
+    ```
+    * Multi-assignment is a feature from Sass each-loops that allows authors to define several variables that can then be accessed in the loop content.  
+    * Two variables are better than one
+      * When looping through a map with a single variable, it contains the key and the value as a two-item list.  
+      * Always define two variables in the loop: one for the key, one for the value.
+
+  * The while-loop
+    * a way to execute a chunk of code as long as a condition remains true.  
+    * In Sass, it is veery hard to find a decent use case for a while-loop
+    * Here is how a while-loop is described in Sass:
+      1.  The @while directive
+      2.  The matching condition for the loop to keep going
+    * Ex:
+    ```
+    $number: 4;
+    
+    @while ($number > 0) {
+      //  Do something with '$number'
+      $number: $number - 1;
+    }
+    ```
+    
 ##  Nesting
 
 ##  The @extend Directive
