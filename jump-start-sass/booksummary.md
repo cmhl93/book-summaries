@@ -1038,6 +1038,140 @@
     
 ##  Nesting
 
+### Selector Nesting
+
+ * Selector nesting, or "nested rules" is the ability to write rule sets within other rule sets that result in composed selectors.
+ * Ex:
+ ```
+ .container {
+   margin: 0 auto;
+   max-width: 42em;
+   padding: 0 1em;
+  
+   p, li {
+    text-indent: 1em;
+   }
+ }
+ ```
+ * Compiling this would generate the following CSS code:
+ ```
+ .container {
+   margin: 0 auto;
+   max-width: 42em;
+   padding: 0 1em;
+ }
+ 
+ .container p,
+ .container li {
+  text-indent: 1em;
+ }
+ ```
+ 
+ * Variable Scoping
+  * Global scoping:
+  ```
+  $rhythm: 1em;
+  
+  .container {
+    margin: 0 auto;
+    max-with: 42em;
+    padding: 0 $rhythm;
+    
+    p {
+      text-indent: $rhythm;
+    }
+  }
+  ```
+  * Local scoping:
+  ```
+  .container {
+    $rhythm: 1em;
+    
+    margin: 0 auto;
+    max-width: 42em;
+    padding: 0 $rhythm;
+    
+    p {
+      text-indent: $rhythm;
+    }
+  }
+  ```
+  
+  * The Ampersand Selector
+    * Nicknamed the parent selector reference
+    * It might be useful to dynamically access the parent selector from an inner rule. The & selector does precisely this.
+    ```
+    .container {
+      margin: 0 auto;
+      max-width: 42em;
+      padding: 0 1em;
+      
+      p {
+        text-indent: 1em;
+        
+        a {
+          color: deeppink;
+          
+          &:hover,
+          &:active {
+            color: hotpink;
+          } 
+        }
+      }
+    }
+    ```
+    * The code snippet will be compiled to:
+    ```
+    .container {
+      marginL 0 autol
+      max-width: 42em;
+      padding: 0 1em;
+    }
+    
+    .container p {
+      text-indent: 1em;
+    }
+    
+    .container p a {
+      color: deeppink;
+    }
+    
+    .container p a:hover,
+    .container p a:active {
+      color: hotpink;
+    }
+    ```
+    
+    * The ampersand selector can also be followed by a suffix that will be added to the parent selector.
+    ```
+    .component {
+      display: block;
+      
+      &-hidden {
+        display: none;
+      }
+    }
+    ```
+    * The following code will be compiled to:
+    ```
+    .component {
+      display: block;
+    }
+    
+    .component-hidden {
+      display: none;
+    }
+    ```
+    
+### Context Nesting
+
+  * The @at-root Directive
+  
+  
+### Property Nesting
+
+### Best Practices and Nesting Etiquette
+
 ##  The @extend Directive
 
 ##  Warnings and Errors
