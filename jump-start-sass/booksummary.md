@@ -1539,6 +1539,9 @@
 ### Warnings
 
   * It's possible to display messages or the value of any SassScript expression to the standard output stream through the @warn directive.
+  * A warning has no impact on the compilation process; it does not prevent compiling to pursue or change it in any way.  Its only purpose is to display a message in the console.
+  * There are a lot of reasons to use warnings in Sass, such as:
+  
 ##  Architecture
 
 ##  The Sass Ecosystem
