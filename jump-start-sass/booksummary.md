@@ -1165,15 +1165,375 @@
     
 ### Context Nesting
 
-  * The @at-root Directive
+  * It's the ability to nest a CSS scoping directive or a rule set, such as a media query (@media) or a support query (@supports).
+  * Ex #1:
+  ```
+  @media screen {
+    .navigation li {
+      display: block;
+      
+      @media (min-width: 42em) {
+        display: inline-block;
+      }
+    }
+  }
+  ```
+  * The code is then compiled to:
+  ```
+  @media screen {
+    .navgivation li {
+      display: block;
+    }
+  }
   
+  @media screen and (min-width: 42em) {
+    .navigation li {
+      display: inline-block;
+    }
+  }
+  ```
+  * Ex #2:
+  ```
+  .navigation {
+    display: block;
+    
+    @supports (display: flex) {
+      display: flex;
+    }
+  }
+  ```
+  * The code is then compiled to:
+  ```
+  .navigation {
+    display: block;
+  }
+  
+  @supports (display: flex) {
+    .navigation {
+      display: flex;
+    }
+  }
+  ```
+  
+  * The @at-root Directive
+    * The @at-root directive was introduced so as to be able to emit a style block at the root of the document, rather than nest in beneath its parent selectors.
+    * Have Sass output this rule set at the root of the document:
+    ```
+    .button {
+      color: red;
+      
+      @at-root a#{&} {
+        color: blue;
+      }
+    }
+    ```
+    * Our final CSS looks like this:
+    ```
+    .button {
+      display: inline-block;
+    }
+    
+    a.button {
+      text-decoration: none;
+    }
+    ```
   
 ### Property Nesting
 
+  ```
+  .container {
+    font: {
+      family: 'Jump Start', sans-serif;
+      size: 42px;
+      weight: bold;
+      style: normal;
+    };
+  }
+  ```
+
+  * The code will be compiled as:
+  ```
+  .container {
+    $font: (
+      'family': ('Jump Start, sans-serif),
+      'size': 42px,
+      'weight': bold,
+      'style': normal,
+    );
+    
+    font: {
+      @each $property, $value in $font {
+        #{$property}: $value;
+      }
+    };
+  }
+  ```
+  
 ### Best Practices and Nesting Etiquette
 
+  * Selector nesting:
+    * Does not make it any faster to write code
+    * Unlikely that your speed bottleneck is typing CSS selectors
+    * If you have to use selector nesting, the reason should never be to avoid retyping selectors.
+    * Makes code harder to read
+    * Makes the codebase harder to search
+    
 ##  The @extend Directive
 
+  * the @extend directive is one way to handle inheritance in Sass.
+  
+### Building Clear Relationships
+
+  ```
+  .message, .info, .warning {
+    background-color: gray;
+    border: 1px solid black;
+    margin: 1em;
+  }
+  
+  .info {
+    background-color: blue;
+  }
+  
+  .warning {
+    background-color: red;
+  }
+  ```
+  
+  * We can write the following Sass and output exactly the same CSS as before:
+  ```
+  .message {
+    background-color: gray;
+    border: 1px solid black;
+    margin: 1em;
+  }
+  
+  .info {
+    @extend .message;
+    background-color: blue;
+  }
+  
+  .warning {
+    @extend .message;
+    background-color: red;
+  }
+  ```
+  
+### Extending Utilities
+
+  ```
+  //  Mixin Input
+  
+  @mixin clearfix {
+    &::after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+  
+  .emory {
+    @include clearfix;
+  }
+  
+  .gracie {
+    @include clearfix;
+  }
+  
+  .miko {
+    @include clearfix;
+  }
+  ```
+  
+  ```
+  /*  Mixin Output  */
+  
+  .emory::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  
+  .gracie::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  
+  .miko::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  ```
+  
+  * Using @extend will create less output:
+  ```
+  //  Extends Input
+  
+  .clearfix:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  
+  .emory {
+    @extend .clearfix;
+  }
+  
+  .gracie {
+    @extend .clearfix;
+  }
+  
+  .miko {
+    @extend .clearfix;
+  }
+  ```
+  
+  ```
+  /*  Extends Output  */
+  
+  .clearfix::after, .emory::after, .gracie::after, .miko::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  ```
+  
+### The Placeholder (Extend-only) Selector
+
+  * A placeholder selector is a new selector type that only exists in Sass.
+  * Placeholder selectors look like class or id selectors, but they start with % instead of . or #, and disappear completely in the output:
+  ```
+  //  Placeholder Input
+  
+  %clearfix::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  
+  .emory {
+    @extend .clearfix;
+  }
+  
+  .gracie {
+    @extend .clearfix;
+  }
+  
+  .miko {
+    @extend .clearfix;
+  }
+  ```
+  
+  ```
+  /*  Placeholder Output  */
+  
+  .emory:: after, .gracie::after, .miko::after {
+    content: '';
+    display: table;
+    clear: both;
+  
+  }
+  ```
+  * This is great for third-party libraries wanting to provide extendable classes without adding bloat to code. If a placeholder is not extended, that code block is never rendered.
+  
+### Advanced Extending
+
+  * If you extend something that isn't there, Sass will throw an error:
+  ```
+  ".error-message" failed to @extend ".aliens".
+  The selector ".aliens" was not found.
+  Use "@extend .aliens !optional" if the extend should be able to fail.
+  ```
+  * Adding !optional to your @extend will silence that error, making your extension optional.  This is especially helpful when working with third-party libraries.  Here's an example:
+  ```
+  .error-message {
+    @extend .aliens !optional;
+  }
+  ```
+### Nesting Extends
+
+  * The most notorious feature of @extends is when one nested selector extends another:
+  ```
+  .leonardo .cobb .dicaprio {
+    background: blue;
+  }
+  
+  .cillian .fischer .murphy {
+    @extends .dicaprio
+  }
+  ```
+  * If Sass compiled every possible meaning behind that extension - weaving together each possible iteration - the results would be exponentially long.  Sass is smarter than that, but still has to cover reasonable possibilities:
+  ```
+  .leonardo .cobb .dicaprio,
+  .leonardo .cobb .cillian .fischer .murphy,
+  .cillian .fishcer .leonardo .cobb .murphy {
+    background: blue;
+  }
+  ```
+  
+### The Limits of Extending
+
+  * Confusing Cascade:
+    * @extend messes with the cascade, changing the specificity of styles in ways that are not obvious or easy to control.
+    * To specificity isn't determined by the order in which you use extensions, but the order in which they're defined:
+    ```
+    .important {
+      font-size: 4rem;
+    }
+    
+    .message {
+      font-size: 0.75rem;
+    }
+    ```
+  
+  * Collateral Damage
+    * What happens if we want the .message class to look different in other contexts?
+    * Many teams avoid this problem by only extending placeholder selectors and only defining placeholders in one location. 
+    * That's a great rule of thumb, and helps to make extensions clear and controllable.
+    
+  * Hard-to-Read Output
+    * When you see that long list of selectors in your browser inspector, it can be difficult to trace back to your original code - or hard to know your original intention.
+    * Suffice it to say, you should look at the output CSS to make sure it means what you intended.
+    
+  * Media Query Madness
+    * Various people have proposed using mixins that will wrap extends, so you caan choose between the two options on the fly:
+    ```
+    //  Define a Mixtend:
+    @mixin clearfix($mixin: false) {
+      @if $mixin {
+        &::after {
+          content: '';
+          display: table;
+          clear: both;
+        }
+      } @else {
+        @extend %clearfix;
+      }
+    }
+    
+    %clearfix {
+      @include clearfix(mixin);
+    }
+    
+    //  Using a Mixtend:
+    .container {
+      @include clearfix;
+    }
+    
+    @media (min-width: 48em) {
+      .grid-row {
+        @include clearfix(mixin);
+      }
+    }
+    ```
+    
+    * Dependable Mixins
+      * While the media query issue may get fixed down the road, the other issues are here to stay.
+      * It's from basic problems with trying to represent inheritance in CSS. 
+      * The current hold-up with @media is that every proposal fixing that issue would make the other issues worse.
+      
 ##  Warnings and Errors
 
 ##  Architecture
