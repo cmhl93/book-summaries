@@ -1536,6 +1536,9 @@
       
 ##  Warnings and Errors
 
+### Warnings
+
+  * It's possible to display messages or the value of any SassScript expression to the standard output stream through the @warn directive.
 ##  Architecture
 
 ##  The Sass Ecosystem
