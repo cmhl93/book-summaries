@@ -1649,6 +1649,84 @@
     * Look similar to CSS imports, but the imported files are compiled into one single output file, as though their contents were copied and pasted into place before compilation.  This type of Sass import will only work on files with .sass or .scss extensions, but you can leave the extension off when importing (as long as there are no similarly named files).
     * It's also possible to import multiple files in one command, or import files into a nested context:
       ```
+      //  Import an explicit file relative to the current directory
+      @import 'path/to/explicit.scss';
+      
+      //  Import a file with either the .sass or .scss extension
+      @import 'implicit';
+      
+      //  Import multiple files...
+      @import 'path/to/emory.scss',
+              'miko',
+              'path/to/gracie';
+              
+      //  Import a file into a nested context...
+      //  (imagine the file copied and pasted into this context)
+      .latte {
+        @import 'espresso';
+      }
+      ```
+    * The most common use of Sass importing is for partial files - Sass files that are not compiled on their own but are for importing into other files.
+    * If you want a Sass file to remain uncompiled until it's imported, add an underscore (_) to the start of the filename.
+    * Sass files that start with _ won't compile on their own, but can be imported into other files.
+    * When importing partials, Sass allows you to leave the _off, which is similar to leaving off an extension.
+    * For example:
+      ```
+      //  _authors.scss
+      .miriam {
+        background: blue;
+      }
+      
+      //  jumpstartsass.scss
+      @import 'authors';  //  Shorthand for importing '_authors.scss'
+      
+      //  jumpstartsass.css (compiled CSS)
+      .miriam {
+        background: blue;
+      }
+      ```
+      * Running Sass in this directory (sass --update .) compiles jumpstartsass.scss to jumpstartsass.css; however, it won't create an _authors.css file, since it has a leading underscore.
+    * All Sass imports are handled at compile time and never interrupt the browser, it's perfectly safe (and recommended) to use as many partials as necessary, compiling them into a single stylesheet for production.
+    * A common Sass directory for a project might look like this:
+      ```
+      sass/config/_colors.scss
+                /_webfonts.scss
+                
+      sass/layout/_navigation.scss
+                 /_banner.scss
+                 
+      sass/modules/_calendar.scss
+                /_contact.scss
+                
+      sass/patterns/_buttons.scss
+                /_dropdown.scss
+        
+      sass/main.scss        
+      ```
+    * After organizing all your partials, they can be imported into the single primary main.scss file for compilation:
+      ```
+      //  Primary Sass File: main.scss
+      @import 'config/colors';
+      @import 'config/webfonts';
+      
+      @import 'patterns/buttons';
+      @import 'patterns/dropdown';
+      
+      @import 'layout/navigation';
+      @import 'layout/banner';
+      
+      @import 'modules/calendar';
+      @import 'modules/contact';
       ```
     
+### Components and Organization
+
+  * Most CSS and Sass organization systems are based on some concept of user interface "components" or discrete pieces that can be put together to form a complete project.
+  * Here are some guidelines for thinking about architecture:
+    1.  Break your code into the smallest logical components partials
+    2.  Organize your partials into grouped folders based on specificity
+    3.  Import those partials into one master file in order of specificity
+  
+  * Object-oriented CSS (OOCSS)
+    * 
 ##  The Sass Ecosystem
