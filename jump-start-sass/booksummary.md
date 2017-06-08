@@ -1455,38 +1455,38 @@
 ### Nesting Extends
 
   * The most notorious feature of @extends is when one nested selector extends another:
-  ```
-  .leonardo .cobb .dicaprio {
-    background: blue;
-  }
-  
-  .cillian .fischer .murphy {
-    @extends .dicaprio
-  }
-  ```
+    ```
+    .leonardo .cobb .dicaprio {
+      background: blue;
+    }
+
+    .cillian .fischer .murphy {
+      @extends .dicaprio
+    }
+    ```
   * If Sass compiled every possible meaning behind that extension - weaving together each possible iteration - the results would be exponentially long.  Sass is smarter than that, but still has to cover reasonable possibilities:
-  ```
-  .leonardo .cobb .dicaprio,
-  .leonardo .cobb .cillian .fischer .murphy,
-  .cillian .fishcer .leonardo .cobb .murphy {
-    background: blue;
-  }
-  ```
+    ```
+    .leonardo .cobb .dicaprio,
+    .leonardo .cobb .cillian .fischer .murphy,
+    .cillian .fishcer .leonardo .cobb .murphy {
+      background: blue;
+    }
+    ```
   
 ### The Limits of Extending
 
   * Confusing Cascade:
     * @extend messes with the cascade, changing the specificity of styles in ways that are not obvious or easy to control.
     * To specificity isn't determined by the order in which you use extensions, but the order in which they're defined:
-    ```
-    .important {
-      font-size: 4rem;
-    }
-    
-    .message {
-      font-size: 0.75rem;
-    }
-    ```
+      ```
+      .important {
+        font-size: 4rem;
+      }
+
+      .message {
+        font-size: 0.75rem;
+      }
+      ```
   
   * Collateral Damage
     * What happens if we want the .message class to look different in other contexts?
@@ -1499,35 +1499,35 @@
     
   * Media Query Madness
     * Various people have proposed using mixins that will wrap extends, so you caan choose between the two options on the fly:
-    ```
-    //  Define a Mixtend:
-    @mixin clearfix($mixin: false) {
-      @if $mixin {
-        &::after {
-          content: '';
-          display: table;
-          clear: both;
+      ```
+      //  Define a Mixtend:
+      @mixin clearfix($mixin: false) {
+        @if $mixin {
+          &::after {
+            content: '';
+            display: table;
+            clear: both;
+          }
+        } @else {
+          @extend %clearfix;
         }
-      } @else {
-        @extend %clearfix;
       }
-    }
-    
-    %clearfix {
-      @include clearfix(mixin);
-    }
-    
-    //  Using a Mixtend:
-    .container {
-      @include clearfix;
-    }
-    
-    @media (min-width: 48em) {
-      .grid-row {
+
+      %clearfix {
         @include clearfix(mixin);
       }
-    }
-    ```
+
+      //  Using a Mixtend:
+      .container {
+        @include clearfix;
+      }
+
+      @media (min-width: 48em) {
+        .grid-row {
+          @include clearfix(mixin);
+        }
+      }
+      ```
     
     * Dependable Mixins
       * While the media query issue may get fixed down the road, the other issues are here to stay.
@@ -1541,7 +1541,90 @@
   * It's possible to display messages or the value of any SassScript expression to the standard output stream through the @warn directive.
   * A warning has no impact on the compilation process; it does not prevent compiling to pursue or change it in any way.  Its only purpose is to display a message in the console.
   * There are a lot of reasons to use warnings in Sass, such as:
+    * Informing the user of an assumption made about the code in order to avoid surprise and hard-to-track bugs.
+    * Advising about a deprecated function or mixin as part of a library or framework
+  * Sending a warning is dead simple to do: start with the @warn directive, then state whatever it is.
+    * You don't have to use a string; you can warn with a number, a list, a map = whatever. Here, we print a string:
+      ```
+      @warn 'Uh-oh, something looks weird';
+      ```
+  * Using a regular CLI client, this warning will emit the following output:
+    ```
+    WARNING: Uh-oh, something looks weird.
+             on line 1 of /Users/hgiraudel/jump-start-sass/warning.scss 
+    ```
+    
+  * The Difference between @warn and @debug
+    * There are two major differences between warning about a value and debugging a value.
+    * The first one is that warnings can be turned off using the quiet option.
+    * Degubs, on the other hand, will always be printed so that you remember to remove them when you're done using them.
+    * The second difference is that warnings come with a stack trace - a report of the active stack frames at a certain point in time being during the execution of a program.
+      * You know from where they're being emitted.
+    * Debugs only print the value, along with the line they were called in, but they offer no extra information.
+    * The @debug directive can really come in handy when you want to know what's inside a variable, for instance:
+      ```
+      @debug $base-font-size;
+      ```
   
+### Errors
+
+  * The only difference between an error and a warning is that the error stops the compilation process.
+  * You can throw an error using the @error directive.
+  * Time to tke a look at a real practical example.  Let's start by writing a small function to help accessing deeply nested values in maps, map-deep-get(..):
+    ```
+    @function map-deep-get($map, $keys...) {
+      @each $key in $keys {
+        $map: map-get($map, $key);
+        
+        @if (type-of($map) == 'null') {
+          @return $map;
+        }
+      }
+      @return $map; 
+    }
+    ```
+  * Let's enhance it with custom errors. But first, consider the following map and map-deep-get(..) call:
+    ```
+    $map: (
+      'foo': (
+        'bar': (
+          'baz':42
+        )
+      )
+    );
+    
+    $value: map-deep-get($map, 'foo', 'bar', 'baz', 'qux');
+    ```
+  * If we try to execute this code, it will yield:
+    ```
+    Error: 42 is not a map for 'map-get'
+          on line 1 of /Users/hgiraudel/jump-start-sass/error.scss
+    ```
+  * We can perform a second check to ensure that the map is actually a map, or we throw a meaningful error:
+    ```
+    @function map-deep-get($map, $keys...) {
+      @each $key in $keys {
+        $map: map-get($map, $key);
+        
+        //  If '$map' does not contain the next key, return 'null'
+        @if type-of($map) == 'null' {
+          @return $map;
+        }
+      
+        //  If '$map' is not a map, throw an error
+        @if type-of($map) != 'map' {
+          @error 'key '#{$key}' is not associated with a map but a =>#{type-of($map)} ('#{$map}').';
+        }
+      }
+      @return $map;
+    }
+    ```
+  * If we run our previous snippet again, here's the output:
+    ```
+    Error: key 'baz' is not associated with a map but a number ('42').
+            on line 1 of /Users/hgiraudel/jump-start-sass/error.scss
+    ```
+    
 ##  Architecture
 
 ##  The Sass Ecosystem
