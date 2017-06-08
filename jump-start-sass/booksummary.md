@@ -1627,4 +1627,28 @@
     
 ##  Architecture
 
+### Multiple files and Folders
+
+ * Breaking your code into multiple files is one key advantage to using a preprocessor, and forms the basis of any architecture.
+ 
+ * CSS Imports
+  * The CSS @import directive allows you to reference one CSS file from another.  Importing is handled by the browser and requires additional HTTP requests - since the importing file has to be parsed before the @import directive is discovered.
+  * If you have a chain of files importing each other, those imports will happen in sequence, blocking the document from rendering until all the CSS has loaded.
+  * There are various cases in which Sass will fall back to the vanilla CSS output, such as when:
+    * An imported filed has a .css extension 
+    * A filename begins with http:// or https://
+    * The filename is a url(..) function
+    * @import has any media queries
+  * The following will compile to standard CSS imports, even in Sass:
+    ```
+    @import 'relative/styles.css';
+    @import 'http://absolute.com/styles.css';
+    @import url('landscape.css') screen and (orientation: landscape);
+    ```
+  * Sass Imports and Partials
+    * Look similar to CSS imports, but the imported files are compiled into one single output file, as though their contents were copied and pasted into place before compilation.  This type of Sass import will only work on files with .sass or .scss extensions, but you can leave the extension off when importing (as long as there are no similarly named files).
+    * It's also possible to import multiple files in one command, or import files into a nested context:
+      ```
+      ```
+    
 ##  The Sass Ecosystem
