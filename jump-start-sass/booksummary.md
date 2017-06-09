@@ -1728,5 +1728,74 @@
     3.  Import those partials into one master file in order of specificity
   
   * Object-oriented CSS (OOCSS)
-    * 
+    * OOCSS is one of the original front-end architectures, and the initial inspiration for adding the @extend directive to Sass.
+    * It places a strong emphasis on finding the right granularity for CSS objects.
+    * Media object - a fixed size media element (such as an image or video) alongside fluid content such as text.
+    * OOCSS is a powerful tool for simplifying CSS and perfecting the performance of large-scale applications. 
+      * But taken to extremes, the OOCSS approach can leave you with a mess of single-purpose utility classes (such as .padding-left-10px) that couple your HTML and CSS too tightly, and eliminate any maintainability you might get from more semantic code.
+    * The two main principles of OOCSS are worth keeping in mind while you work out your own architecture:
+      * Separate structure and skin
+        * By having multiple design skins (colors, backgrounds, borders, etc.) that you can mix and match with structural objects, it's possible to achieve more visual variety with less code.
+        * This also means decoupling styles from the base semantics of HTML tags. By styling classes (.primary-header) instead of tags (h1), you have more flexibility to keep HTML meaningful, while applying consistent styles wherever they're appropriate. 
+      * Separate container and content
+        * OOCSS objects should not be dependent on their location or context, but be reusuable and able to file whatever container they are given.
+        * This ensures that an object will look the same in any context, without developers having to guess what a given element or class will do in different situations.
+        
+  * Atomic Design
+    * driven by questions of granularity.
+    * An atom project is broke down into five stages: atoms, molecules, organisms, templates, and pages.
+    * The idea is to style the stages in order, sstarting granular and working outwords, with each stage building on the one before.
+    * Atoms can be abstract information such as color palettes, fonts, and typographic scales; they can also be default styles for tags such as form labels, buttons, and paragraphs.
+    * Atoms can be put together to form molecules. Combine an image with a paragraph and button (all atoms), and you have a simple product-listing molecule.
+    * Molecules are small components that do one task well. Group a number of these molecules together, and you have an organism.
+    * Organisms are larger grouped components that form a section of the interface.
+    * Templates combine the smaller molecules and organisms into actual layout structures.
+    * Each specific instance of a template is called a page.
+    * A standard Atomic Design directory will be organized into these five stage-based folders:
+      ```
+      sass/atoms/_colors.scss
+      sass/atoms/_buttons.scss
+      
+      sass/molecules/_navigation.scss
+      sass/molecules/_search.scss
+      
+      sass/organisms/_banner.scss
+      sass/organisms/_gallery.scss
+      
+      sass/templates/_list.scss
+      sass/templates/_detail.scss
+      
+      sass/pages/_home.scss
+      sass/pages/_archive.scss
+      
+      sass/main.scss
+      ```
+      
+  * Block, Element, Modifier (BEM)
+    * The BEM CSS architecture is built around the three ideas in its title.
+      * Blocks are components of any size, and can be nested inside each other.
+        * The header block might contain a logo block, a navigation block, and a search block.
+        * Blocks are reusuable, independent, and mobile - so they can be put anywhere on the page, the repeated as often as necessary.
+      * Elements are the constituent parts that belong to a specific block.
+        * A menu block might be made up of four tab elements.
+      * Modifiers are flags on blocks or elements that change their appearance, behavior, or state.
+    * There are variations on the exact syntax, but the formal documentation allow hyphens (-) within a block, element, or modifier namee; double underscore (__) between block and element names; and single underscore (_) before a boolean (true/false) modifier, or between a key-value modifier name and its given value.
+    * Here's an example straight from the BEM documentation that defines a form block with a _login boolean modifer, a _theme_forest key-value modifer, and two elements:
+      ```
+      <form class="form form_login form_theme_forest">
+        <input class="form_input">
+        <input class="form_submit form_submit_disabled">
+      </form>
+      ```
+    * A related Sass partial would look like this:
+      ```
+      .form {}
+      .form_theme_forest {}
+      .form_login {}
+      .form_input {}
+      .form_submit {}
+      .form_submit_disabled {}
+      ```
+    * Elements and modifiers have their own subdirectories using the same underscore-driven naming conventions:
+      
 ##  The Sass Ecosystem
