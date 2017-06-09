@@ -1797,5 +1797,32 @@
       .form_submit_disabled {}
       ```
     * Elements and modifiers have their own subdirectories using the same underscore-driven naming conventions:
+      ```
+      blocks/input/_type/input_type_search.css
       
+      blocks/input/__box/input__box.css
+      
+      blocks/input/input.css
+      
+      blocks/input/input.js
+      
+      blocks/button/button.css
+      
+      blocks/button/button.js
+      
+      blocks/button/button.png
+      ```
+    
+  * Scalable and Modular Architecture for CSS (SMACSS)
+    * This architecture uses five categories for organizing for CSS.
+    * The five categories here are base, layout, module, state, and theme.
+      * Base rules define the default style of elements.
+      * Layout styles are used to break the document into sections that can contain modules, the individual components of a design.
+      * State rules define different JavaScript-dependent states for a module or layout.
+      * Most sites have no need for themes, but they can be used to describe multiple style options for the same modules.
+    * SMACSS pays special attention to what Snook calls the depth of applicabiliy.
+    * The Sass "inception rule" states that you should never nest selectors more than three layers deep.
+    * By shortening the selector, we've lowered the specificity, but we still have a large depth of applicability.  The problem with so much depth is that it makes our CSS more dependent on a particular HTML structure.
+    
+  * Hugo's 7-1    
 ##  The Sass Ecosystem
