@@ -1825,4 +1825,59 @@
     * By shortening the selector, we've lowered the specificity, but we still have a large depth of applicability.  The problem with so much depth is that it makes our CSS more dependent on a particular HTML structure.
     
   * Hugo's 7-1    
+    * A variation of SMACSS for organizing Sass partials.
+    * It uses seven folders of partials and one master file to pull them all together
+    * The base/ folder contains broad standards across a site - such as a reset, default styles for common HTML tags, common animations, and basic typography.
+    * The layout folder includes everything one might need for laying out the structure of a site.
+    * The components folder is organized into partials by component; the pages folder contains any page-specific styles; and a themes folder holds any theme-related styles (if your project has multiple themes).
+    * 7-1 also includes an abstracts folder for Sass tools and helpers, which is organized into partials for global variables, functions, mixins, and placeholders. Nothing in this folder should output any CSS if compiled on its own.
+    * There is a vendors folder for third-party libraries, frameworks, and toolkits such as Normalize, Bootstrap, jQueryUI, FancyButttonsOMG, and so on.
+    * Put it all together, and you have a Sass directory similar to this:
+      ```
+      sass/base/_reset.scss
+      
+      sass/base/_typography.scss
+      
+      sass/components/_buttons.scss
+      
+      sass/components/_carousel.scss
+      
+      sass/components/_cover.scss
+      
+      sass/components/_dropdown.scss
+      
+      sass/layout/_navigation.scss
+      
+      sass/layout/_grid.scss
+      
+      sass/layout/_header.scss
+      
+      sass/layout/_footer.scss
+      
+      sass/pages/_home.scss
+      
+      sass/pages/_contact.scss
+      
+      sass/themes/_theme.scss
+      
+      sass/themes/_admin.scss
+      
+      sass/utils/_variables.scss
+      
+      sass/utils/_functions.scss
+      
+      sass/utils/_mixins.scss
+      
+      sass/utils/_helpers.scss
+      
+      sass/vendors/_bootstrap.scss
+      
+      sass/vendors/_jquery-ui.scss
+      
+      sass/main.scss
+      
+      ```
+      
+  * Inverted Triangle CSS (ITCSS)
+  
 ##  The Sass Ecosystem
