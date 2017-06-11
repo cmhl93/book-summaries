@@ -2003,10 +2003,134 @@
     }
     ```
 
-  * 
+  * Singularity uses two primary values to define your grid: grids and gutters.
+  * Grids are defined with a unitless number of columns, or a list of unitless asymmetrical column sizes.
+  * Gutters are also defined with a unitless number, describing the ratio of a gutter to a single column. They are defined using the add-grid(..) and add-gutter(..) mixins:
+    ```
+    //  Symmetrical
+    @include add-grid(12);  //  12 columns
+    @include add-gutter(1/4); //  gutters are 1/4 the size of a column
+    
+    //  Asymmetrical 
+    @include add-grid(1 3 5 7); //  4 uneven columns, sized relative to each other
+    @include add-gutter(0.25);  //  gutters are sized relative to column-sizes
+    ```
+  * And that;s where the similarities end. Singularity allows you to add new grids at explicit breakpoints:
+    ```
+    @include add-grid(3);
+    @include add-grid(6 at 500px);
+    @include add-grid(1 3 5 7 at 900px);
+    
+    @include add-gutter(1/3);
+    @include add-gutter(.25 at 900px); 
+    ```
   
 ### Media Queries
 
+  * The first major media query plugin we knew about was Breakpoint.
+  * Breakpoint starts by providing a spare syntax for the most common min/max queries:
+    ```
+    .mason::after {
+      @include breakpoint(400px) {
+        content: 'A single number is used as a min-width.';
+      }
+      
+      @include breakpoint(400px 900px) {
+        content: 'A pair of numbers are used for min- and max-width';
+      }
+      
+      @include breakpoint('height' 300px 500px) {
+        content: 'You can also be explicit about the property, such as height.';
+      }
+    }
+    ```
+    
+    ```
+    @media (min-width: 400px) {
+      .mason::after {
+        content: 'A single number is used as a min-width';
+      }
+    }
+    
+    @media (min-width: 400px) and (max-width: 900px) {
+      .mason::after {
+        content: 'A pair of numbers are used for min- and max-width.';
+      }
+    }
+    
+    @media (min-width: 300px) and (max-width: 500px) {
+      .mason::after {
+        content: 'You can also be explicit about the property, such as height.';
+      }
+    }
+    ```
+  * The Breakpoint syntax expands from there to include every complex media query type you can imagine. It also furnishes several options for browser fallbacks in the original file, or separately.  Perhaps most interesting, you can access details about the current media query at any time:
+    ```
+    .sam::before {
+      @include breakpoint(700px (orientation landscape)) {
+        content: 'orientation: ' + breakpoint-get-context('orientation');
+        content: 'min-width: ' + breakpoint-get-context('min-width');
+        content: 'max-width: ' + breakpoint-get-context('max-width');
+      }
+    }
+    ```
+    
+    ```
+    @media (min-width: 700px) and (orientation: landscape) {
+      .sam::before {
+        content: "orientation: landscape";
+        content: "min-width: 700px";
+        content: "max-width: false";
+      }
+    }
+    ```
+    
+  * Include-media starts with a map of predefined breakpoints, then uses >, <, =, and other comparison characters to turn them into full queries rendered by the media(..) mixin. Include-media also supplies built-in keywords for orientation, resolution, and media categories:
+    ```
+    $breakpoints: (
+      turtle: 320px,
+      dog: 768px,
+      giraffe: 1024pxx;
+    );
+    
+    .eduardo::before {
+      @include media(">turtle", "<=dog") {
+        content: 'Larger than turtle (320px), but smaller or equal to dog (768px)';
+      }
+    }
+    ```
+    
+    ```
+    @media (min-width: 321px) and (max-width: 768px) {
+      .eduardo::before {
+        content: 'Larger than turtle (320px), but smaller or equal to dog (768px)';
+      }
+    }
+    ```  
+  * Reference layout sizes directly where they're defined:
+    ```
+    //  Layout Sizes
+    $sizes: (
+      'page': 40em, //  the max-width of my layout container
+    );
+    
+    //  Special Breakpoints
+    $breakpoints: (
+      'toolbar-text': 15em, //  a breakpoint for showing text beside toolbar icons
+    );
+    
+    //  Accoutrement Usage
+    .miriam {
+      @include above('toolbar-text') {
+        .toolbar-text { display: inline-block;  }
+      }
+      
+      @include below('page') {
+        padding: 1em;
+      }
+    }
+    ```
+    
 ### Toolkits
 
 ### Beautiful Code
