@@ -1946,10 +1946,65 @@
 
 ### Open-source Sass
 
+  * There are the big front-end frameworks that provide all the common front-end patterns aa site might need.  The largest frameworks such as Bootstrap and Foundation take this to an extreme, providing Ikea-style website kits just waiting to be assembled.
+  * The Sass frameworks provide all the Sass utilities and toolkits that you might need along the way: helpers for layout, accessibility, typography, and so on.
+  * There are also design component libraries that focus on providing specific styles, such as glossy buttons or nice typography.
+  * There are the abstract toolkit utilities that act more like a hammer: they're good at hitting things, but they don't care what's hit, or why.
+
 ### Frameworks
+
+  * Compass was the first big Sass framework.  It was primarily intended as a Sass package manager, but also included a library of common utilities for other Sass toolkits (Compass plugins) to reference.
+  * Compass has reached the end of its life and is no longer being actively maintained, but ThoughtBot's Bourbon provides aa similar set of features.  Both are Ruby gems:
+    ```
+    gem install bourbon
+    gem install compass
+    ```
+  * And Bourbon is now also available as a Node package:
+    ```
+    npm install bourbon
+    ```
+  * Both have been built around the official CSS3 syntax, so their APIs are often (but not always) identical.  
 
 ### Grids
 
+  * Susy was the first grid system for Sass
+  * The quickest entry point for Susy is the span(..) mixin.
+  * The mixin provides float-based output, but the functions can be used anywhere to create any style of grid you can image; for example:
+    ```
+    //  Susy configuration:
+    $susy: (
+      columns: 12,  //  the number of columns in a grid
+      gutters: 1/4, //  the size of a gutter relative to a column
+    );
+    
+    //  Span mixin:
+    article {
+      include span(8 of 12);
+    }
+    
+    //  Susy functions:
+    aside {
+      flex: 1 1 span(4 of 12);
+      margin-left: gutter();
+    }
+    ```
+    
+    ```
+    /*  Compiled CSS  */
+    article {
+      width: 66.10169%;
+      float: left;
+      margin-right: 1.69492%;
+    }
+    
+    aside {
+      flex: 1 1 32.20339%;
+      margin-left: 1.69492%;
+    }
+    ```
+
+  * 
+  
 ### Media Queries
 
 ### Toolkits
