@@ -1879,5 +1879,81 @@
       ```
       
   * Inverted Triangle CSS (ITCSS)
-  
+    * ITCSS organizes all your Sass and CSS based on three metrics: reach, specificity, and explicitness - visualized as an inverted triangle.
+    * Code should be organized from least to most explicit, starting with general catchall rules and moving up to more explicit styles.
+    * Code is organized from broadest to narrowest reach - so that styles affecting more HTML come early in the code, and styles with a more localized application come later.
+    * Code is organized from lowest to highest specificity, so that later code can always override earlier code.
+    * The triangle is broke down into seven layers. Each layer is more specific, explicit, and narrow-reaching than the layer before it:
+      * Settings contains global Sass configuration that can be accessed anywhere in the project, such as font sizes, colors, and other project configuration.
+      * Tools are global functions and mixins that are helpful across the project and not specific to one component.
+      * Generic is the first layer with CSS output of its own, which includes browser resets or normalization, global box-sizing, and any other broad-scoped rules.
+      * The elements layer provides default styles for bare HTML elements such as links and paragraphs.
+        * It provides a more opinionated style.
+      * ITCSS objects are similar to OOCSS objects, and are defined in class-based selectors.  They define reusuable patterns that have a consistent structure no matter what content or cosmetic style is applied.
+      * Components are recognizable pieces of an interface.
+        * After the initial setup, this is where the majority of a project's feature-building work takes place. 
+      * Finally, trump styles can be used to override any other layer.  Trumps should be used sparingly, and have as narrow a scopr as possible.
+    * The results could look like this:
+      ```
+      @import "settings/global";
+      @import "settings/colors";
+      
+      @import "tools/functions";
+      @import "tools/mixins";
+      
+      @import "generic/box-sizing";
+      @import "generic/normalize";
+      
+      @import "elements/headings";
+      @import "elements/links";
+      
+      @import "objects/wrappers";
+      @import "objects/grid";
+      
+      @import "components/site-nav";
+      @import "components/buttons";
+      @import "components/carousel";
+      
+      @import "trumps/clearfix";
+      @import "trumps/utilities";
+      @import "trumps/ie8";
+      ```
+      
+### Modular Imports in Sass 4
+
+  * Modular imports - the major new feature that is driving plans for Sass 4.
+  * Where Sass imports currently work as though the entire imported document has been cut and pasted into place, modular imports provide a lot more control for the developer.
+  * It will probably look a little like this:
+    ```
+    @use 'path/to/sitepoint/author' as 'miriam';
+    
+    .sitepoint {
+      @include miriam.write('Jump Start Sass');
+      -webkit-paycheck: miriam.money('millions');
+    }
+    ```
+    
+  * Locality
+    * It's impossible to tell by looking at a single Sass file what already exists in that global space.
+    * Sass will default to using the filename as a prefix if none is provided, and also allow you to remove the prefix when you need to.
+    * In addition to using a file with or without a given prefix, it might be possible to use an entire file as a mixin, so you can apply the code of that file anywhere you want - even in a nested context.
+    
+  * Encapsulation
+    * With encapsulation, you'll have control over which mixins, functions, variables, and (possibly) placeholders should be made public.  Adding - or _ to the start of a name will define it as private.
+    * There is also talk of a @forward directive that would allow authors to pass the API from one module along as part of another.
+    
 ##  The Sass Ecosystem
+
+### Open-source Sass
+
+### Frameworks
+
+### Grids
+
+### Media Queries
+
+### Toolkits
+
+### Beautiful Code
+
+### Package Managers
