@@ -24,7 +24,7 @@
   * The tags between <html> and </html> are also called elements. 
   * The tags do not get displayed in the browser; instead, they determine the manner in which content is presented to the user. 
   * The text between the <body> and </body> tags is the content that is presented to the user. 
-  * The <p> tag is used to define paragraphs where you want to break up two streams of information. 
+  * The p tag is used to define paragraphs where you want to break up two streams of information. 
   * However, there is an exception to the rule; some tags such as br and hr do not have a closing tag. 
   
 ### The <head> element
