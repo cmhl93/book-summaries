@@ -18,14 +18,14 @@
     ```
   * In the preceding code sample, <!Doctype html> is a declaration and lets the browser know that you are using HTML5. 
   * In HTML, tags are keywords surrounded by angular brackets (<>). They usually come in pairs. 
-    * For example, <html> is the opening tag and </html> is the closing tag. 
-    * Similarly, <p> is the opening tag and </p> is the closing tag. 
+    * For example, html is the opening tag and closing tag. 
+    * Similarly, p is the opening tag and closing tag. 
   * The <html> tag tells the browser that everything between it and the closing </html> tag is an HTML document.
   * The tags between <html> and </html> are also called elements. 
   * The tags do not get displayed in the browser; instead, they determine the manner in which content is presented to the user. 
   * The text between the <body> and </body> tags is the content that is presented to the user. 
   * The <p> tag is used to define paragraphs where you want to break up two streams of information. 
-  * However, there is an exception to the rule; some tags such as <br> and <hr> do not have a closing tag. 
+  * However, there is an exception to the rule; some tags such as br and hr do not have a closing tag. 
   
 ### The <head> element
 
@@ -36,7 +36,7 @@
 ### Headers
 
   * Heading tags are used to differentiate the heading of a web page from the rest of the content.
-  * There is a hierarchy, which means the content in <h1> is the most important, and that in <h6> is the least important one.
+  * There is a hierarchy, which means the content in h1 is the most important, and that in h6 is the least important one.
   * Headings are useful for Search Engine Optimization (SEO) purposes. 
   * Heading tags help describe what the web page is all about, and the search engine spiders look for specific information from the 
   heading tags, along with the content. 
