@@ -2133,6 +2133,94 @@
     
 ### Toolkits
 
+  * Modular Scale configuration starts with two variables:
+    ```
+    $ms-base: 1em;
+    $ms-ratio: $golden;
+    ```
+    * The $ms-base variable defines the starting point of the scale, while $ms-ratio defines the ratio between numbers. 
+  * Here's one clever function that plucks values from multiple maps based on a shared key:
+    ```
+    $authors: (
+      ('name': 'Hugo', 'origin': 'France'),
+      ('name': 'Miriam', 'origin': 'Lesotho')
+    );
+    
+    $origins: _pluck($authors, 'origin'); //  ('France', 'Lesotho')
+    
+    ```
+
+  * Sassport, a toolkit for sharing JavaScript functions and values with your Sass. For example, you might define your color palette in JavaScript:
+    ```
+    //  my-colors.js
+    module.exports = {
+      primary: '#C0FF33',
+      secondary: '#BADA55'
+    };
+    ```
+    * And then access it in your Sass:
+    ```
+    //  stylesheet.scss
+    $colors: require('path/to/my-colors');
+    $primary: map-get($colors, 'primary');
+    ```
+  * You can also write JavaScript functions such as this one for the size of an image:
+    ```
+    //  index.js
+    var sassport = require('sassport');
+    var sizeOf = require('image-size');
+    
+    sassport()
+      .functions({
+        'size-of($path)': sassport.wrap(function(path) {
+          return sizeOf(path);
+        }, {  unit: 'px'})
+      });  
+    ```
+    * Now you can use that JavaScript function inside your Sass:
+      ```
+      //  stylesheet.scss
+      $image-size: size-of('miriam.png');
+      
+      //  resulting map:
+      $image-size: (
+        'width': 145px,
+        'height': 175px,
+      
+      );
+  * The downside is that map values are unable to easily reference other values in the same map. The following will fail to work because the $colors variable is yet to actually exist at declaration time when we are trying to access it in the tint(..) function:
+    ```
+    //  Maps can't reference themselves ...
+    $colors: (
+      'pink': hsl(330, 100%, 45%),
+      'callout': tint(map-get($colors, 'pink'), 90%),
+    );
+    ```
+   
 ### Beautiful Code
 
+  * Readable code is the core of maintainability, and the first step towards readable code is a good linter.
+    * The linter should catch all your small typos and formatting mistakes, so it's not left to others to do so.
+  * There are several great linters for Sass: scss-lint is a Ruby gem, and the newer sasslint and stylelint, which are npm packages for Node.
+  * Testing is also important if you are doing anything complex with functions or mixins.
+  * True is a unit-testing toolkit written in pure Sass so that it works anywhere Sass is compiled.
+  * Here's an example of True testing our tint(..) function:
+    ```
+    @include test-module('Tint [function]') {
+      @include test('Adjusts the tint of a color') {
+        @include assert-equal(
+          tint('primary', 25%),
+          mix(#fff, color('primary'), 25%), 'Returns a color mixed with white at a given weight.');
+      }
+    } 
+    ```
+  * When compiled, True will output CSS comments with detailed results, and warn you in the console if any tests fail.
+  
 ### Package Managers
+
+  * To package your library as a gem, you'll need a gemspec file in your project's root directory. A gemspec looks a little like this:
+  * If you're packaging for Compass, you can also add a short Compass lib file:
+    ```
+    # lib/compass-miriam.rb
+    require 'miriam'
+    ```
