@@ -429,7 +429,7 @@
     $length: length($value); //  2
     $separator: list-separator($value); //  space
     ```
-` * To make it an explicit string, wrap it in (single or double) quotes. Here's another - preferred - way of describing the previous list:
+  * To make it an explicit string, wrap it in (single or double) quotes. Here's another - preferred - way of describing the previous list:
     ```
     $value: ('Hello', 'world');
     $type: type-of($value); //  list
