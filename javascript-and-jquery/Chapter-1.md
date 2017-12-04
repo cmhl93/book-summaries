@@ -6,7 +6,7 @@
 
 [How do computers fit in with the world around them?](#how-do-computers-fit-in-with-the-world-around-them)
 
-[How do I write a script for a web page?](#How-do-I-write-a-script-for-a-web-page)
+[How do I write a script for a web page?](#how-do-i-write-a-script-for-a-web-page)
 
 ##  What is a script?
 
