@@ -65,4 +65,29 @@
     * Document object
       * The current web page loaded into each window is modelled using a document object.
       * The title property of the document object tells you what is beween the opening <title> and closing </title> tag for that web page, and the lastModified property of the document object tells you the date this page was last updated.
+  * The document object represents an HTML page
+    * Like other objects that represent real-world things, the document object has:
+      * Properties
+        * Properties desscribe characteriestics of the current web page (such as the title of the page).
+      * Methods
+        * Methods perform tasks associated with the document currently loaded in the browser
+      * Events
+        * You can respond to events, such as a user clicking or tapping on an element.
+    * When the browser creates a model of a web page, it not only creates a document object, but it also creates a new object    
+  * How a browser sees a web page
+    1.  Receive a page as HTML code
+    2.  Create a model of the page and store it in memory
+    3.  Use a rendering engine to show the page on screen
+  * All major browsers use a JavaScript interpreter to translate your instructions (in JavaScript) into instructions the computer can follow.
+  
+##  How do I write a script for a web page?
+
+  * How HTML, CSS, & JavaScript fit together
+  * Progressive Enhancement
+  * Creating a Basic JavaScript
+  * Linking to a JavaScript file from an HTML page
+  * The Source Code is not amended
+  * Placing the script in the page
+  * How to use objects & methods
+  * JavaScript runs where it is found in the html
     
