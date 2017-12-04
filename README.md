@@ -7,4 +7,4 @@
   2.  Pro HTML5 with CSS, JavaScript and Multimedia: Complete website development and best practices By: Mark J. Collins (INCOMPLETE)
   3.  Jump Start Sass By: Hugo Giraudel & Miriam Suzanne
   4.  Thinking in HTML  By: Aravind Shenoy (INCOMPLETE)
-  5.  JavaScrip & JQuery: Interactive front-end web development By: Jon Duckett
+  5.  JavaScript & JQuery: Interactive front-end web development By: Jon Duckett
