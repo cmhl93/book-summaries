@@ -80,7 +80,7 @@
     3.  Use a rendering engine to show the page on screen
   * All major browsers use a JavaScript interpreter to translate your instructions (in JavaScript) into instructions the computer can follow.
   
-##  How do I write a script for a web page?
+##  How do I write a script for a web page? 
 
   * How HTML, CSS, & JavaScript fit together
   * Progressive Enhancement
