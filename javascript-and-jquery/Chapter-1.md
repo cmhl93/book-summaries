@@ -31,5 +31,38 @@
 
 ##  How do computers fit in with the world around them?
 
-
+ * Computers create models of the world using data
+ * Objects & properties
+  * Objects (things)
+    * In computer programming, each physical thing in the world can be represented as an object.  
+    * There are two different types of objects here: a hotel and a car.
+    * Programmers might say that there is one instance of the hotel object, and two instances of the car object.
+    * Each object can have its own:
+      * Properties
+      * Events
+      * Methods
+    * Together they create a working model of that object.
+  * Properties (Characteristics)
+    * Each property has a name and a value, and each of these name/value pairs tells you something about each individiual instance of the project.
+  * Events
+    * What is an event?
+      * Programs are designed to do different things when users interact with the computer in different ways.
+      * An event is the computer's way of sticking up its hand to say, "Hey, this just happened!"
+    * What does an event do?
+      * A script will state which events the programmer wants to respond to, and what part of the script should be run when each of those events occur.
+  * Methods
+    * What is a method?
+      * Methods typically represent how people interact with an object in the real world.
+      * They are like questions and instructions that:
+        * Tell you something about that object (using information stored in its properties)
+        * Change the value of one or more of that object's properties
+    * What does a method do?
+      * When you use a method, you do not always need to know how it achieves its task; you just need to know how to ask the question and how to interpret any answers it gives you.
+  * Web browsers are programs built using objects
+    * Window object
+      * The brower represents each window or tab using a window object.
+      * The location property of the window object will tell you the URL of the current page.
+    * Document object
+      * The current web page loaded into each window is modelled using a document object.
+      * The title property of the document object tells you what is beween the opening <title> and closing </title> tag for that web page, and the lastModified property of the document object tells you the date this page was last updated.
     
