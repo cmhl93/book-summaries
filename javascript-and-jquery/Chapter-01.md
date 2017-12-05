@@ -68,7 +68,7 @@
   * The document object represents an HTML page
     * Like other objects that represent real-world things, the document object has:
       * Properties
-        * Properties desscribe characteriestics of the current web page (such as the title of the page).
+        * Properties describe characteriestics of the current web page (such as the title of the page).
       * Methods
         * Methods perform tasks associated with the document currently loaded in the browser
       * Events
@@ -83,11 +83,49 @@
 ##  How do I write a script for a web page? 
 
   * How HTML, CSS, & JavaScript fit together
+    * Each language forms a separate layer with a different purpose.
+    * <html>
+      * CONTENT LAYER
+      * .html files
+      * This is where the content of the page lives.  The HTML gives the page structure and adds semantics.
+    * {css}
+      * PRESENTATION LAYER
+      * .css files
+      * The CSS enhances the HTML page with rules that state how the HTML content is presented (backgrounds, borders, box dimensions, colors, font, etc.)
+    * javascript()
+      * BEHAVIOR LAYER
+      * This is where we can change how the page behaves, adding interactivity.  
   * Progressive Enhancement
+    * These three layers form the basis of a popular aproach to building we pages called progressive enhancement.
+    * HTML ONLY
+      * Starting with the HTML layer allows you to focus on the most important thing about your site: its content
+    * HTML & CSS
+      * Adding the CSS rules in a separate file keeps rules regarding how the page looks away from the content itself.
+    * HTML & CSS & JAVASCRIPT
+      * The JavaScript is added last and enhances the usability of the page or the experience of interacting with the site
   * Creating a Basic JavaScript
+    * JavaScript is written in plain text, just like HTML and CSS, so you do not need any new tools to write a script.
   * Linking to a JavaScript file from an HTML page
+    * When you want to use JavaScript with a web page, you use the HTML <script> element to tell the browser it is coming across a script.
+    * Its src attribute tells people where the JavaScript file is stored.
   * The Source Code is not amended
+    * If you look at the source code for the example you just created, you will see that the HTML is still exactly the same.
   * Placing the script in the page
+    * You may see JavaScript in the HTML between opening <script> and closing </script> tags (but it is better to put scripts in their own files). 
   * How to use objects & methods
-  * JavaScript runs where it is found in the html
+    * This one line of JavaScript shows how to use objects and methods.
+    * Programmers refer to this as calling a method of an object.
+    `document.write('Good afternoon!');`
+    * The document object represents the entire web page.  All web browsers implement this object, and you can use it just by giving its name.
+    * The write() method of the document object allows new content to be written into the page where the <script> element sits.
+    * Member operator
+      * The document object has several methods and properties.  They are known as members of that object.
+      * You can access the members of an object using a dot betwen the object name and the member you want to access.
+      * It is called a member operator.
+    * Parameters
+      * Whenever a method requires some information in order to work, the data is given inside the parentheses.
+      * Each piece of information is called a parameter of the method.  
+      * In this case, the write() method needs to know what to write into the page.
+  * JavaScript runs where it is found in the HTML
+    * When the browser comes across a <script> element, it stops to load the script and then checks to see if it needs to do anything. 
     
