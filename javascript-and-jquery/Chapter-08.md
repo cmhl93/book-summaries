@@ -1,3 +1,0 @@
-# Ajax & JSON
-
-##  Document Contents
