@@ -6,11 +6,11 @@
 
 [Comments](#comments)
 
-[What is a variable?)(#what-is-a-variable)
+[What is a variable?](#what-is-a-variable)
 
-[Variables: How to declare them](#variables:-how-to-declare-them)
+[Variables: How to declare them](#variables-how-to-declare-them)
 
-[Variables: How to assign them a value](#variables:-how-to-assign-them-a-value)
+[Variables: How to assign them a value](#variables-how-to-assign-them-a-value)
 
 [Data Types](#data-types)
 
@@ -22,7 +22,7 @@
 
 [Values in arrays](#values-in-arrays)
 
-[Accessing & changing values in an array](#accessing-&-changing-values-in-an-array)
+[Accessing and changing values in an array](#accessing-and-changing-values-in-an-array)
 
 [Expressions](#expressions)
 
@@ -139,7 +139,7 @@
    numColors = colors.length;
    ```
 
-## Accessing & changing values in an array
+## Accessing and changing values in an array
 
  ```
  // Create the array
