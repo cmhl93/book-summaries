@@ -30,10 +30,13 @@
     * We use JavaScript to model our application according to the standards of MVC on the client side and not on the server.
     * Development models:
       * Presentation Model (PM)
-        * ![The following is a pictorial representation of PM:](http://i68.tinypic.com/mrk83.jpg)  
+        * ![Pictorial representation of PM](http://i68.tinypic.com/mrk83.jpg)  
       * Model View Presenter (MVP)
+        * ![Pictorial representation of MVP](http://tinypic.com/m/js2bs8/3)
       * Model View Controller (MVC)
       * Model View ViewModel (MVVM)
+        * MVVM is based on MVC and MVP, which attempts to separate more clearly the development of User Interfaces (UIs/frontend) 
+        from  that of the business logic and behavior in an application.
    
       
 ##  Peculiarities between SPA and traditional web development
