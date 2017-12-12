@@ -31,11 +31,15 @@
     * Development models:
       * Presentation Model (PM)
         ![Pictorial representation of PM](http://i68.tinypic.com/mrk83.jpg)  
+        
       * Model View Presenter (MVP)
         ![Pictorial representation of MVP](http://i66.tinypic.com/14eaxsg.jpg)
+      
       * Model View Controller (MVC)
+      
       * Model View ViewModel (MVVM)
         ![Pictorial representation of MVVM](http://i66.tinypic.com/332sdva.jpg)
+        
         * MVVM is based on MVC and MVP, which attempts to separate more clearly the development of User Interfaces (UIs/frontend) 
         from  that of the business logic and behavior in an application.
    
