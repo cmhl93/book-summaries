@@ -29,7 +29,8 @@
     from the user's interaction.
     * We use JavaScript to model our application according to the standards of MVC on the client side and not on the server.
     * Development models:
-      * Presentation Model (PM)  
+      * Presentation Model (PM)
+        * ![The following is a pictorial representation of PM:](http://i68.tinypic.com/mrk83.jpg)  
       * Model View Presenter (MVP)
       * Model View Controller (MVC)
       * Model View ViewModel (MVVM)
