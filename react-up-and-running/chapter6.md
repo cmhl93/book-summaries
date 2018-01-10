@@ -1,3 +1,3 @@
-# Buildinbg an App
+# Building an App
 
 # Document Contents
