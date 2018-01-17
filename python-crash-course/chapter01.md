@@ -20,5 +20,20 @@
     
   * Hello World!
     * In Python, you can write the Hello World program in one line:
-      `print("Hello World")
-    
+      
+      ```
+      print("Hello World")
+      ```
+
+##  Python on Different Operating Systems
+
+  * Python on Windows
+    * Installing Python
+      1.  Open Command Prompt
+      2.  enter python in lowercase
+      3.  If you get a Python prompt (>>>), Python is installed
+      4.  You can also download a python installer from http://python.org/downloads/
+      5.  Add python to PATH
+      
+    * Starting a Python Terminal Session   
+      
