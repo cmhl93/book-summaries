@@ -35,5 +35,16 @@
       4.  You can also download a python installer from http://python.org/downloads/
       5.  Add python to PATH
       
-    * Starting a Python Terminal Session   
-      
+##  Troubleshooting Installation Issues
+
+  * When a program contains a significant error, Python displays a trace-back
+  * The setup instructions in this chapter are also available online, through https://www.nostarch.com/pythoncrashcourse/
+
+##  Running Python Programs from a Terminal
+
+  ```
+  C:\ cd Desktop\python_work
+  C:\Desktop\python_work$ dir hello_world.py
+  C:\Desktop\python_work$ C:\Python35\python hello_world.py]
+  Hello Python world!
+  ```
