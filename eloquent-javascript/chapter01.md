@@ -20,8 +20,22 @@
 
 ##  Values
 
+  * In a JavaScript environment, chunks that represent pieces of information are called values.
+  * Values play different roles.  Every value has a type that determines its role
+  * Six basic types of values in JavaScript:
+    1. Numbers
+    2. Strings
+    3. Booleans
+    4. Objects
+    5. Functions
+    6. Undefined values
+  * To create a value, you must merely invoke its name.
+    * Call for one, and you have it.  
+  
 ##  Numbers
 
+  * Values of the number type are numeric values
+  
 ##  Arithmetic
 
 ##  Special Numbers
